@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3gvb13v0yotn"]
+[gd_scene load_steps=5 format=3 uid="uid://d3gvb13v0yotn"]
 
 [ext_resource type="Texture2D" uid="uid://dpbghjmrai2ys" path="res://icon.svg" id="1_fyqef"]
-[ext_resource type="Script" uid="uid://h6cbgij0u12e" path="res://ColorContainer.cs" id="2_m6e0p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
 bg_color = Color(0.442911, 0.442911, 0.442911, 1)
@@ -237,7 +236,6 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
-script = ExtResource("2_m6e0p")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer"]
 layout_mode = 2
