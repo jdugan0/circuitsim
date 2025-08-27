@@ -1,0 +1,298 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3gvb13v0yotn"]
+
+[ext_resource type="Texture2D" uid="uid://dpbghjmrai2ys" path="res://icon.svg" id="1_fyqef"]
+[ext_resource type="Script" uid="uid://h6cbgij0u12e" path="res://ColorContainer.cs" id="2_m6e0p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
+bg_color = Color(0.442911, 0.442911, 0.442911, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_27fn8"]
+font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nltto"]
+bg_color = Color(0.0910176, 0.28756, 0.00553138, 1)
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m6e0p")
+
+[node name="FullMargin" type="MarginContainer" parent="BackgroundPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HSplitContainer" type="HSplitContainer" parent="BackgroundPanel/FullMargin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+split_offset = 605
+
+[node name="LVBox" type="VBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Drawer" type="Control" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox"]
+layout_mode = 2
+columns = 2
+
+[node name="ColorButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/GridContainer"]
+self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_fyqef")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/GridContainer/ColorButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Colors"
+label_settings = SubResource("LabelSettings_27fn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MetersButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/GridContainer"]
+self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_fyqef")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/GridContainer/MetersButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Meters"
+label_settings = SubResource("LabelSettings_27fn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/GridContainer"]
+self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_fyqef")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/GridContainer/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+label_settings = SubResource("LabelSettings_27fn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/GridContainer"]
+self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_fyqef")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/GridContainer/HelpButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Help"
+label_settings = SubResource("LabelSettings_27fn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RVBox" type="VBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TRMenu" type="HBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SaveButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu"]
+self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_fyqef")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu/SaveButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SAVE"
+label_settings = SubResource("LabelSettings_27fn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu"]
+self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_fyqef")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu/LoadButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOAD"
+label_settings = SubResource("LabelSettings_27fn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu"]
+self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_fyqef")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_27fn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClearButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu"]
+layout_mode = 2
+texture_normal = ExtResource("1_fyqef")
+
+[node name="GridTEMP" type="Panel" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox"]
+custom_minimum_size = Vector2(0, 700)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nltto")
+
+[node name="BRTileScreen" type="TextureRect" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox"]
+self_modulate = Color(0.404511, 0.404511, 0.404511, 1)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_fyqef")
+
+[node name="ValueEditorContainer" type="MarginContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ValueEditorContainer"]
+layout_mode = 2
+text = "Value of selected component"
+label_settings = SubResource("LabelSettings_27fn8")
+vertical_alignment = 1
+
+[node name="ColorContainer" type="MarginContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("2_m6e0p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="RedButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+texture_normal = ExtResource("1_fyqef")
+
+[node name="GreenButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+texture_normal = ExtResource("1_fyqef")
+
+[node name="BlueButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 2
+texture_normal = ExtResource("1_fyqef")
+
+[node name="YellowButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+texture_normal = ExtResource("1_fyqef")
+
+[node name="PurpleButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
+modulate = Color(1, 0, 1, 1)
+layout_mode = 2
+texture_normal = ExtResource("1_fyqef")
+
+[node name="BlackButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
+modulate = Color(0.197937, 0.197937, 0.197937, 1)
+layout_mode = 2
+texture_normal = ExtResource("1_fyqef")
+
+[node name="WhiteButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_fyqef")
+
+[node name="MeterReadingContainer" type="MarginContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/MeterReadingContainer"]
+layout_mode = 2
+text = "Meter Readings here"
+label_settings = SubResource("LabelSettings_27fn8")
+vertical_alignment = 1
