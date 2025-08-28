@@ -1,0 +1,42 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bjm4t0par8gau"]
+
+[ext_resource type="Texture2D" uid="uid://cxx6gejml70in" path="res://resources/image/TemporaryTilemap.png" id="1_s04f6"]
+[ext_resource type="Texture2D" uid="uid://c5d1rnlhlkybn" path="res://resources/image/TemporarySelectionmap.png" id="2_ktp6a"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8iuf"]
+texture = ExtResource("1_s04f6")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1x3ld"]
+texture = ExtResource("2_ktp6a")
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:1/next_alternative_id = 2
+0:1/0 = 0
+0:1/1 = 1
+1:0/size_in_atlas = Vector2i(1, 2)
+1:0/next_alternative_id = 2
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -32)
+1:0/1 = 1
+1:2/size_in_atlas = Vector2i(3, 2)
+1:2/0 = 0
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(-32, -32)
+4:0/size_in_atlas = Vector2i(3, 3)
+4:0/0 = 0
+4:3/size_in_atlas = Vector2i(3, 1)
+4:3/0 = 0
+7:0/size_in_atlas = Vector2i(1, 4)
+7:0/0 = 0
+7:0/0/texture_origin = Vector2i(0, -32)
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_c8iuf")
+sources/2 = SubResource("TileSetAtlasSource_1x3ld")
