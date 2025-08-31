@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://gd3mvgx8q2te"]
+
+[ext_resource type="Script" uid="uid://0rhy2vb2h0dp" path="res://scripts/circuit/Pin.cs" id="1_ay5r2"]
+
+[node name="Pin" type="Node2D"]
+script = ExtResource("1_ay5r2")
