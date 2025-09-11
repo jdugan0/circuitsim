@@ -46,7 +46,7 @@ public partial class CircuitComputer : Node
         List<Component> normalComponets = new();
         int vCount = 0;
         foreach (var c in components) if (c.componentProperty is VoltageSourceProperty v)
-            { vSourceComponents.Add(c); v.vCount = vCount; vCount++; }
+            { vSourceComponents.Add(c); v.vIndex = vCount; vCount++; }
             else { normalComponets.Add(c); }
 
         int n = normalComponets.Count;
