@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://0rhy2vb2h0dp" path="res://scripts/circuit/Pin.cs" id="1_ay5r2"]
 
-[node name="Pin" type="Node2D"]
+[node name="Pin" type="Node2D" groups=["pin"]]
 script = ExtResource("1_ay5r2")
