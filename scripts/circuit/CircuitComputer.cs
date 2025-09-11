@@ -12,6 +12,7 @@ public partial class CircuitComputer : Node
     {
         Pin[] pins = Array.ConvertAll<Node, Pin>(GetTree().GetNodesInGroup("pin").ToArray<Node>(), (x) => (Pin)x);
         Wire[] wires = Array.ConvertAll<Node, Wire>(GetTree().GetNodesInGroup("wire").ToArray<Node>(), (x) => (Wire)x);
+        Component[] components = Array.ConvertAll<Node, Component>(GetTree().GetNodesInGroup("component").ToArray<Node>(), (x) => (Component)x);
 
         var dsu = new DSU<Vector2I>();
 
@@ -26,13 +27,42 @@ public partial class CircuitComputer : Node
                 prev = c;
             }
         }
-
+        pinNet.Clear();
         foreach (var p in pins) pinNet[p] = dsu.Find(p.GetGridCoord());
 
 
 
         var nets = pinNet.Values.Distinct().ToList();
+        var netDsu = new DSU<Vector2I>();
+        foreach (var net in nets) netDsu.Add(net);
+        foreach (var c in components)
+        {
+            var n0 = pinNet[c.pins[0]];
+            for (int k = 1; k < c.pins.Length; ++k)
+                netDsu.Union(n0, pinNet[c.pins[k]]);
+        }
+        var groups = new Dictionary<Vector2I, HashSet<Vector2I>>();
+        foreach (var net in nets)
+        {
+            var root = netDsu.Find(net);
+            if (!groups.ContainsKey(root)) groups[root] = new HashSet<Vector2I>();
+            groups[root].Add(net);
+        }
+        foreach (var kv in groups)
+        {
+            var sub = new Subcircuit(kv.Value, (x)=>pinNet[x]);
+
+            sub.Initialize(
+                allPins: pins,
+                allComponents: components,
+                chooseGround: ChooseGround
+            );
+
+            sub.StampAll();
+        }
+        /*
         int nodeCount = 0;
+        netToIndex.Clear();
         foreach (var net in nets)
         {
             if (net == nets[0]) continue;
@@ -41,7 +71,7 @@ public partial class CircuitComputer : Node
 
         foreach (Pin p in pins) { p.netIndex = NodeIndexFor(p); }
 
-        Component[] components = Array.ConvertAll<Node, Component>(GetTree().GetNodesInGroup("component").ToArray<Node>(), (x) => (Component)x);
+
         List<Component> vSourceComponents = new();
         List<Component> normalComponets = new();
         int vCount = 0;
@@ -68,7 +98,16 @@ public partial class CircuitComputer : Node
             //making z:
             eArray = c.componentProperty.eStamp(eArray);
         }
+        */
 
+
+    }
+    private Vector2I ChooseGround(HashSet<Vector2I> netsInIsland, IEnumerable<Pin> pinsInIsland)
+    {
+        var groundPin = pinsInIsland.FirstOrDefault(p => p.isGround);
+        if (groundPin != null) return pinNet[groundPin];
+
+        return netsInIsland.OrderBy(v => v.X).ThenBy(v => v.Y).First();
     }
     public bool AreConnected(Component A, Component B)
     {
