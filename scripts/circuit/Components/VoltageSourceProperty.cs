@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 [GlobalClass]
 public partial class VoltageSourceProperty : ComponentProperty
 {
@@ -24,5 +25,9 @@ public partial class VoltageSourceProperty : ComponentProperty
     {
         MnaUtil.Set(ref e, vIndex, voltage);
         return e;
+    }
+    public override void ComputeCurrents(Pin[] pins, double[] x, int n)
+    {
+        current = x[n + vIndex];
     }
 }

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MathNet.Numerics.LinearAlgebra;
 
 public sealed class Subcircuit
 {
@@ -71,6 +72,51 @@ public sealed class Subcircuit
             Darray = c.componentProperty.DStamp(Darray);
 
             eArray = c.componentProperty.eStamp(eArray);
+        }
+    }
+    public void Solve()
+    {
+        int n = Garray.GetLength(0);
+        int m = Darray.GetLength(0);
+        if (n + m == 0) return;
+        int N = n + m;
+        double[,] A = new double[N, N];
+        double[] z = new double[N];
+        // G
+        for (int r = 0; r < n; ++r)
+            for (int c = 0; c < n; ++c)
+                A[r, c] = Garray[r, c];
+
+        // B
+        for (int r = 0; r < n; ++r)
+            for (int c = 0; c < m; ++c)
+                A[r, n + c] = Barray[r, c];
+
+        // C
+        for (int r = 0; r < m; ++r)
+            for (int c = 0; c < n; ++c)
+                A[n + r, c] = Carray[r, c];
+
+        // D
+        for (int r = 0; r < m; ++r)
+            for (int c = 0; c < m; ++c)
+                A[n + r, n + c] = Darray[r, c];
+
+        for (int r = 0; r < n; ++r) z[r] = iArray[r];
+        for (int r = 0; r < m; ++r) z[n + r] = eArray[r];
+
+        var matrixA = Matrix<double>.Build.DenseOfArray(A);
+
+        var vectorZ = Vector<double>.Build.Dense(z);
+
+        var x = matrixA.Solve(vectorZ);
+
+
+        //push solution back to net!
+        foreach (var p in pins) p.solvedVoltage = (p.netIndex >= 0) ? x[p.netIndex] : 0.0;
+        foreach (var comp in components)
+        {
+            comp.componentProperty.ComputeCurrents(comp.pins, x.ToArray(), n);
         }
     }
 }
