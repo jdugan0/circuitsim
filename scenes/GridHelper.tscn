@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvc0qot3pam3f"]
+
+[ext_resource type="Script" uid="uid://bf0obp6lpu3h5" path="res://scripts/circuit/GridHelper.cs" id="1_4qrko"]
+
+[node name="GridHelper" type="CanvasLayer"]
+layer = 100
+
+[node name="GridHelper" type="Node2D" parent="."]
+z_index = 100
+script = ExtResource("1_4qrko")
+lineWidth = 5.0
+cellAmount = 100
