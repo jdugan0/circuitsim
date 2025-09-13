@@ -1,11 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkqwtr4rnmqrm"]
+[gd_scene load_steps=10 format=3 uid="uid://dkqwtr4rnmqrm"]
 
 [ext_resource type="PackedScene" uid="uid://d3gvb13v0yotn" path="res://scenes/ui/ui.tscn" id="1_iho50"]
 [ext_resource type="PackedScene" uid="uid://dvc0qot3pam3f" path="res://scenes/GridHelper.tscn" id="2_3wh16"]
 [ext_resource type="PackedScene" uid="uid://b64hqmj73nx1d" path="res://scenes/Components/Battery.tscn" id="3_5yd65"]
+[ext_resource type="Script" uid="uid://jew13012ocxv" path="res://scripts/circuit/Components/ResistorProperty.cs" id="4_tt56a"]
 [ext_resource type="PackedScene" uid="uid://bxh2vyj0egwqq" path="res://scenes/Components/Wire.tscn" id="4_y0s4v"]
 [ext_resource type="PackedScene" uid="uid://otyp7csj7frk" path="res://scenes/Components/Resistor.tscn" id="5_tt56a"]
 [ext_resource type="PackedScene" uid="uid://cmilyq0qcnlj5" path="res://scenes/Simulator.tscn" id="6_y0s4v"]
+
+[sub_resource type="Resource" id="Resource_sop0g"]
+script = ExtResource("4_tt56a")
+R = 20.0
+metadata/_custom_type_script = "uid://jew13012ocxv"
+
+[sub_resource type="Resource" id="Resource_tt56a"]
+script = ExtResource("4_tt56a")
+R = 20.0
+metadata/_custom_type_script = "uid://jew13012ocxv"
 
 [node name="LevelTest" type="Node2D"]
 
@@ -45,12 +56,14 @@ position = Vector2(778, 545)
 
 [node name="Resistor2" parent="." instance=ExtResource("5_tt56a")]
 position = Vector2(881, 451)
+componentProperty = SubResource("Resource_sop0g")
 
 [node name="Wire4" parent="." instance=ExtResource("4_y0s4v")]
 position = Vector2(796, 737)
 
 [node name="Resistor3" parent="." instance=ExtResource("5_tt56a")]
 position = Vector2(788, 470)
+componentProperty = SubResource("Resource_tt56a")
 
 [editable path="GridHelper"]
 [editable path="Wire"]
