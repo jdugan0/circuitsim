@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkqwtr4rnmqrm"]
+[gd_scene load_steps=11 format=3 uid="uid://dkqwtr4rnmqrm"]
 
 [ext_resource type="PackedScene" uid="uid://d3gvb13v0yotn" path="res://scenes/ui/ui.tscn" id="1_iho50"]
 [ext_resource type="PackedScene" uid="uid://dvc0qot3pam3f" path="res://scenes/GridHelper.tscn" id="2_3wh16"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bxh2vyj0egwqq" path="res://scenes/Components/Wire.tscn" id="4_y0s4v"]
 [ext_resource type="PackedScene" uid="uid://otyp7csj7frk" path="res://scenes/Components/Resistor.tscn" id="5_tt56a"]
 [ext_resource type="PackedScene" uid="uid://cmilyq0qcnlj5" path="res://scenes/Simulator.tscn" id="6_y0s4v"]
+
+[sub_resource type="Resource" id="Resource_vac4a"]
+script = ExtResource("4_tt56a")
+R = 10.0
+metadata/_custom_type_script = "uid://jew13012ocxv"
 
 [sub_resource type="Resource" id="Resource_sop0g"]
 script = ExtResource("4_tt56a")
@@ -43,6 +48,7 @@ position = Vector2(-225, 8.82149e-06)
 
 [node name="Resistor" parent="." instance=ExtResource("5_tt56a")]
 position = Vector2(890, 539)
+componentProperty = SubResource("Resource_vac4a")
 
 [node name="Wire2" parent="." instance=ExtResource("4_y0s4v")]
 position = Vector2(764, 669)

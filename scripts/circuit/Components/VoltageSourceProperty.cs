@@ -26,9 +26,8 @@ public partial class VoltageSourceProperty : ComponentProperty
         MnaUtil.Set(ref e, vIndex, voltage);
         return e;
     }
-    public override void ComputeCurrents(Pin[] pins, double[] x, int n)
+    public override (double voltage, double current) ComputeCurrents(Pin[] pins, double[] x, int n)
     {
-        solvedVoltage = voltage;
-        solvedCurrent = x[n + vIndex];
+        return (voltage, x[n + vIndex]);
     }
 }

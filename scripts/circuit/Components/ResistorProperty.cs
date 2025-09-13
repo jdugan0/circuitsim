@@ -16,12 +16,11 @@ public partial class ResistorProperty : ComponentProperty
         MnaUtil.Add(ref G, n2, n1, -g);
         return G;
     }
-    public override void ComputeCurrents(Pin[] pins, double[] fullSolution, int n)
+    public override (double voltage, double current) ComputeCurrents(Pin[] pins, double[] fullSolution, int n)
     {
         double vp = pins[1].solvedVoltage;
         double vn = pins[0].solvedVoltage;
-        solvedVoltage = (vp - vn);
-        solvedCurrent = (vp - vn) / R;
+        return (vp - vn, (vp - vn) / R);
     }
 
 }

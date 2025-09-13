@@ -117,7 +117,7 @@ public sealed class Subcircuit
         foreach (var p in pins) p.solvedVoltage = (p.netIndex >= 0) ? x[p.netIndex] : 0.0;
         foreach (var comp in components)
         {
-            comp.componentProperty.ComputeCurrents(comp.pins, x.ToArray(), n);
+            (comp.solvedVoltage, comp.solvedCurrent) = comp.componentProperty.ComputeCurrents(comp.pins, x.ToArray(), n);
         }
     }
     public static void Print2DArray<T>(T[,] matrix)
