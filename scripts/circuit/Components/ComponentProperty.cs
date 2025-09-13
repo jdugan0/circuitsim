@@ -4,7 +4,8 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class ComponentProperty : Resource
 {
-    public double current;
+    public double solvedCurrent;
+    public double solvedVoltage;
     public virtual double[,] GStamp(double[,] G, Pin[] pins) => G;
     public virtual double[,] DStamp(double[,] D) => D;
     public virtual double[,] BStamp(double[,] B, Pin[] pins) => B;

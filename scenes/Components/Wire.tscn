@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxh2vyj0egwqq"]
+
+[ext_resource type="Script" uid="uid://cf2n6b4pfo1at" path="res://scripts/circuit/Wire.cs" id="1_ghwwn"]
+[ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="1_mex8t"]
+
+[node name="Wire" type="Node2D" node_paths=PackedStringArray("startCell", "endCell") groups=["wire"]]
+modulate = Color(5.53504e-07, 0.481572, 0.297868, 1)
+script = ExtResource("1_ghwwn")
+startCell = NodePath("Pin")
+endCell = NodePath("Pin2")
+
+[node name="Pin2" parent="." instance=ExtResource("1_mex8t")]
+position = Vector2(-25, 0)
+
+[node name="Pin" parent="." instance=ExtResource("1_mex8t")]
+position = Vector2(40, 1)

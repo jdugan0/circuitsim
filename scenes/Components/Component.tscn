@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://biwjol32k6sra"]
+
+[ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_t2ga7"]
+
+[node name="Component" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
+script = ExtResource("1_t2ga7")
+pins = []

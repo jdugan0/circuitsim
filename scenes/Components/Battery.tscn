@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b64hqmj73nx1d"]
+
+[ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_4k21l"]
+[ext_resource type="Script" uid="uid://dbwd7hojubn2m" path="res://scripts/circuit/Components/VoltageSourceProperty.cs" id="2_4k21l"]
+[ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_gpwld"]
+
+[sub_resource type="Resource" id="Resource_omxjc"]
+script = ExtResource("2_4k21l")
+voltage = 10.0
+metadata/_custom_type_script = "uid://dbwd7hojubn2m"
+
+[node name="Battery" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
+modulate = Color(0.722662, 0, 0.203542, 1)
+script = ExtResource("1_4k21l")
+pins = [NodePath("Pin"), NodePath("Pin2")]
+componentProperty = SubResource("Resource_omxjc")
+
+[node name="Pin" parent="." instance=ExtResource("3_gpwld")]
+position = Vector2(-34, 0)
+isGround = true
+
+[node name="Pin2" parent="." instance=ExtResource("3_gpwld")]
+position = Vector2(35, 0)

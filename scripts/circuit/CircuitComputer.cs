@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public partial class CircuitComputer : Node
 {
@@ -15,8 +16,19 @@ public partial class CircuitComputer : Node
         Component[] components = Array.ConvertAll<Node, Component>(GetTree().GetNodesInGroup("component").ToArray<Node>(), (x) => (Component)x);
 
         var dsu = new DSU<Vector2I>();
+        var pinsAtCell = new Dictionary<Vector2I, List<Pin>>();
 
-        foreach (var p in pins) dsu.Add(p.GetGridCoord());
+        foreach (var p in pins)
+        {
+            var gc = p.GetGridCoord();
+            dsu.Add(gc);
+            if (!pinsAtCell.TryGetValue(gc, out var list))
+            {
+                list = new List<Pin>();
+                pinsAtCell[gc] = list;
+            }
+            list.Add(p);
+        }
         foreach (var w in wires)
         {
             Vector2I? prev = null;
@@ -24,6 +36,8 @@ public partial class CircuitComputer : Node
             {
                 dsu.Add(c);
                 if (prev.HasValue) dsu.Union(prev.Value, c);
+                if (pinsAtCell.TryGetValue(c, out var plist))
+                    foreach (var p in plist) dsu.Union(c, p.GetGridCoord());
                 prev = c;
             }
         }
@@ -33,12 +47,13 @@ public partial class CircuitComputer : Node
 
 
         var nets = pinNet.Values.Distinct().ToList();
+        // GD.Print(nets.Count);
         var netDsu = new DSU<Vector2I>();
         foreach (var net in nets) netDsu.Add(net);
         foreach (var c in components)
         {
             var n0 = pinNet[c.pins[0]];
-            for (int k = 1; k < c.pins.Length; ++k)
+            for (int k = 1; k < c.pins.Length; k++)
                 netDsu.Union(n0, pinNet[c.pins[k]]);
         }
         var groups = new Dictionary<Vector2I, HashSet<Vector2I>>();
@@ -48,9 +63,10 @@ public partial class CircuitComputer : Node
             if (!groups.ContainsKey(root)) groups[root] = new HashSet<Vector2I>();
             groups[root].Add(net);
         }
+
         foreach (var kv in groups)
         {
-            var sub = new Subcircuit(kv.Value, (x)=>pinNet[x]);
+            var sub = new Subcircuit(kv.Value, (x) => pinNet[x]);
 
             sub.Initialize(
                 allPins: pins,
@@ -59,7 +75,9 @@ public partial class CircuitComputer : Node
             );
 
             sub.StampAll();
+            sub.Solve();
         }
+        // GD.Print(groups.Count); 
         /*
         int nodeCount = 0;
         netToIndex.Clear();

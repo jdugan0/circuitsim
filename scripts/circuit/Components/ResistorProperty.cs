@@ -20,7 +20,8 @@ public partial class ResistorProperty : ComponentProperty
     {
         double vp = pins[1].solvedVoltage;
         double vn = pins[0].solvedVoltage;
-        current = (vp - vn) / R;
+        solvedVoltage = (vp - vn);
+        solvedCurrent = (vp - vn) / R;
     }
 
 }

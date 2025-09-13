@@ -58,9 +58,9 @@ public partial class GridHelper : Node2D
 
     public static Vector2I GetGridCoord(Node2D node)
     {
-        Vector2 pos = node.GlobalPosition - instance.zero;
-        int gx = Mathf.RoundToInt(pos.X / instance.cellSize);
-        int gy = Mathf.RoundToInt(pos.Y / instance.cellSize);
+        Vector2 pos = instance.ToLocal(node.GlobalPosition) - instance.zero;
+        int gx = Mathf.FloorToInt(pos.X / instance.cellSize);
+        int gy = Mathf.FloorToInt(pos.Y / instance.cellSize);
         return new Vector2I(gx, gy);
     }
 }

@@ -16,6 +16,11 @@ public partial class Wire : Node2D
         return (startCell.GetGridCoord().Y == endCell.GetGridCoord().Y);
     }
 
+    public override void _Process(double delta)
+    {
+        // GD.Print(string.Join(",", CoveredCells()));
+    }
+
     public bool GetConnected(Vector2I gridCoord)
     {
         if (gridCoord == startCell.GetGridCoord() || gridCoord == endCell.GetGridCoord()) return true;

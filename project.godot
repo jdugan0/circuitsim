@@ -36,3 +36,5 @@ project/assembly_name="CircuitSim"
 [global_group]
 
 pin=""
+wire=""
+component=""

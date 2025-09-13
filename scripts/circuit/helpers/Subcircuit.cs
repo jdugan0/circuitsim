@@ -109,14 +109,26 @@ public sealed class Subcircuit
 
         var vectorZ = Vector<double>.Build.Dense(z);
 
-        var x = matrixA.Solve(vectorZ);
 
+        var x = matrixA.Solve(vectorZ);
+        if (x == null) return;
 
         //push solution back to net!
         foreach (var p in pins) p.solvedVoltage = (p.netIndex >= 0) ? x[p.netIndex] : 0.0;
         foreach (var comp in components)
         {
             comp.componentProperty.ComputeCurrents(comp.pins, x.ToArray(), n);
+        }
+    }
+    public static void Print2DArray<T>(T[,] matrix)
+    {
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                GD.Print(matrix[i, j] + "\t");
+            }
+            GD.Print();
         }
     }
 }

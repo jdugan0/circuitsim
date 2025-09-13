@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmilyq0qcnlj5"]
+
+[ext_resource type="Script" uid="uid://5f6q2ck3l1gy" path="res://scripts/circuit/CircuitComputer.cs" id="1_pr2bn"]
+
+[node name="Simulator" type="Node"]
+script = ExtResource("1_pr2bn")

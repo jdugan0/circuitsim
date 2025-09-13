@@ -28,6 +28,7 @@ public partial class VoltageSourceProperty : ComponentProperty
     }
     public override void ComputeCurrents(Pin[] pins, double[] x, int n)
     {
-        current = x[n + vIndex];
+        solvedVoltage = voltage;
+        solvedCurrent = x[n + vIndex];
     }
 }

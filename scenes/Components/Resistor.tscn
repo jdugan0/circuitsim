@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://otyp7csj7frk"]
+
+[ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_t4y4b"]
+[ext_resource type="Script" uid="uid://jew13012ocxv" path="res://scripts/circuit/Components/ResistorProperty.cs" id="2_pcom0"]
+[ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_c6m5t"]
+
+[sub_resource type="Resource" id="Resource_c6m5t"]
+script = ExtResource("2_pcom0")
+R = 20.0
+metadata/_custom_type_script = "uid://jew13012ocxv"
+
+[node name="Resistor" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
+script = ExtResource("1_t4y4b")
+pins = [NodePath("Pin"), NodePath("Pin2")]
+componentProperty = SubResource("Resource_c6m5t")
+
+[node name="Pin" parent="." instance=ExtResource("3_c6m5t")]
+position = Vector2(-34, 0)
+
+[node name="Pin2" parent="." instance=ExtResource("3_c6m5t")]
+position = Vector2(35, 0)
