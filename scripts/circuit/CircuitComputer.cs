@@ -78,47 +78,6 @@ public partial class CircuitComputer : Node
             sub.Solve();
         }
         // GD.Print(groups.Count); 
-        /*
-        int nodeCount = 0;
-        netToIndex.Clear();
-        foreach (var net in nets)
-        {
-            if (net == nets[0]) continue;
-            netToIndex[net] = nodeCount++;
-        }
-
-        foreach (Pin p in pins) { p.netIndex = NodeIndexFor(p); }
-
-
-        List<Component> vSourceComponents = new();
-        List<Component> normalComponets = new();
-        int vCount = 0;
-        foreach (var c in components) if (c.componentProperty is VoltageSourceProperty v)
-            { vSourceComponents.Add(c); v.vIndex = vCount; vCount++; }
-            else { normalComponets.Add(c); }
-
-        int n = normalComponets.Count;
-        int m = vSourceComponents.Count;
-        double[,] Garray = new double[n, n];
-        double[,] Barray = new double[n, m];
-        double[,] Carray = new double[m, n];
-        double[,] Darray = new double[m, m];
-        double[] eArray = new double[m];
-        double[] iArray = new double[n];
-        foreach (Component c in components)
-        {
-            //making A:
-            Garray = c.componentProperty.GStamp(Garray, c.pins);
-            Barray = c.componentProperty.BStamp(Barray, c.pins);
-            Carray = c.componentProperty.CStamp(Carray, c.pins);
-            Darray = c.componentProperty.DStamp(Darray);
-
-            //making z:
-            eArray = c.componentProperty.eStamp(eArray);
-        }
-        */
-
-
     }
     private Vector2I ChooseGround(HashSet<Vector2I> netsInIsland, IEnumerable<Pin> pinsInIsland)
     {
