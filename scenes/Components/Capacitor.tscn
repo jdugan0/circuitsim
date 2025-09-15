@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3l0k0i45bovn"]
+
+[ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_ry4dy"]
+[ext_resource type="Script" uid="uid://bc6og24jt8opx" path="res://scripts/circuit/Components/CapacitorProperty.cs" id="2_ry4dy"]
+[ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_jy1wl"]
+
+[sub_resource type="Resource" id="Resource_h3288"]
+script = ExtResource("2_ry4dy")
+C = 1e-06
+metadata/_custom_type_script = "uid://bc6og24jt8opx"
+
+[node name="Capacitor" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
+script = ExtResource("1_ry4dy")
+pins = [NodePath("Pin"), NodePath("Pin2")]
+componentProperty = SubResource("Resource_h3288")
+
+[node name="Pin" parent="." instance=ExtResource("3_jy1wl")]
+position = Vector2(-34, 0)
+
+[node name="Pin2" parent="." instance=ExtResource("3_jy1wl")]
+position = Vector2(35, 0)

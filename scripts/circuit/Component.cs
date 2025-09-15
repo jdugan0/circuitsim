@@ -9,7 +9,7 @@ public partial class Component : Node
     public double solvedVoltage;
     public override void _Process(double delta)
     {
-        if (componentProperty is ResistorProperty)
+        if (componentProperty is CapacitorProperty)
         {
             GD.Print("Voltage: " + solvedVoltage + " current: " + solvedCurrent);
         }

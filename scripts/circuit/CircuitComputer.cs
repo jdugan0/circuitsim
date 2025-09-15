@@ -9,8 +9,10 @@ public partial class CircuitComputer : Node
 {
     Dictionary<Pin, Vector2I> pinNet = new();
     private Dictionary<Vector2I, int> netToIndex = new();
+    public static double dt;
     public override void _Process(double delta)
     {
+        dt = delta;
         Pin[] pins = Array.ConvertAll<Node, Pin>(GetTree().GetNodesInGroup("pin").ToArray<Node>(), (x) => (Pin)x);
         Wire[] wires = Array.ConvertAll<Node, Wire>(GetTree().GetNodesInGroup("wire").ToArray<Node>(), (x) => (Wire)x);
         Component[] components = Array.ConvertAll<Node, Component>(GetTree().GetNodesInGroup("component").ToArray<Node>(), (x) => (Component)x);

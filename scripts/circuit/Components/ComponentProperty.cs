@@ -9,5 +9,6 @@ public partial class ComponentProperty : Resource
     public virtual double[,] BStamp(double[,] B, Pin[] pins) => B;
     public virtual double[,] CStamp(double[,] C, Pin[] pins) => C;
     public virtual double[] eStamp(double[] e) => e;
+    public virtual double[] iStamp(double[] i, Pin[] p) => i;
     public virtual (double voltage, double current) ComputeCurrents(Pin[] pins, double[] fullSolution, int n) { return (0, 0); }
 }

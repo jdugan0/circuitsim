@@ -72,6 +72,7 @@ public sealed class Subcircuit
             Darray = c.componentProperty.DStamp(Darray);
 
             eArray = c.componentProperty.eStamp(eArray);
+            iArray = c.componentProperty.iStamp(iArray, c.pins);
         }
     }
     public void Solve()
