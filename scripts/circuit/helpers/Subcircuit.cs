@@ -10,7 +10,7 @@ public sealed class Subcircuit
     private readonly Func<Pin, Vector2I> netOf;
     private readonly List<Pin> pins = new();
     private readonly List<Component> components = new();
-    private readonly List<VoltageSourceProperty> vSourceComponents = new();
+    private readonly List<CurrentEquation> vSourceComponents = new();
     private readonly Dictionary<Vector2I, int> netToIndex = new();
     private Vector2I groundNet;
     public double[,] Garray; // n x n
@@ -48,7 +48,7 @@ public sealed class Subcircuit
             p.netIndex = (netOf(p) == groundNet) ? -1 : netToIndex[netOf(p)];
         vSourceComponents.Clear();
         foreach (var c in components)
-            if (c.componentProperty is VoltageSourceProperty vsp) vSourceComponents.Add(vsp);
+            if (c.componentProperty is CurrentEquation vsp) vSourceComponents.Add(vsp);
 
         for (int k = 0; k < vSourceComponents.Count; ++k)
             vSourceComponents[k].vIndex = k;

@@ -2,10 +2,9 @@ using Godot;
 using System;
 using System.Collections.Generic;
 [GlobalClass]
-public partial class VoltageSourceProperty : ComponentProperty
+public partial class VoltageSourceProperty : CurrentEquation
 {
     [Export] public float voltage = 0f;
-    public int vIndex = -1;
 
     public override double[,] BStamp(double[,] B, Pin[] pins)
     {
