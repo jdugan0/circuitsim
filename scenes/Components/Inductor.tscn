@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c7a45inhl4a6i" path="res://scripts/circuit/Components/InductorProperty.cs" id="2_igog0"]
 [ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_6gf1u"]
 
-[sub_resource type="Resource" id="Resource_v25r4"]
+[sub_resource type="Resource" id="Resource_igog0"]
 script = ExtResource("2_igog0")
 L = 0.001
 metadata/_custom_type_script = "uid://c7a45inhl4a6i"
@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://c7a45inhl4a6i"
 [node name="Inductor" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
 script = ExtResource("1_igog0")
 pins = [NodePath("Pin"), NodePath("Pin2")]
-componentProperty = SubResource("Resource_v25r4")
+componentProperty = SubResource("Resource_igog0")
 
 [node name="Pin" parent="." instance=ExtResource("3_6gf1u")]
 position = Vector2(-34, 0)
