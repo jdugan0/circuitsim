@@ -11,13 +11,5 @@ public partial class Pin : Node2D
     {
         return GridHelper.GetGridCoord(this);
     }
-    public override void _Process(double delta)
-    {
-        if (!bang)
-        {
-            bang = true;
-            GD.Print(GetGridCoord());
-        }
-    }
 
 }

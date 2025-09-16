@@ -13,7 +13,6 @@ public partial class PlacementManager : Node2D
 
         if (Input.IsActionJustPressed("PLACE"))
         {
-            GD.Print("hi");
             wire = (Wire)wireScene.Instantiate();
             AddChild(wire);
             wire.startCell.GlobalPosition = GridHelper.GetWorldCoord(mouseCell);
