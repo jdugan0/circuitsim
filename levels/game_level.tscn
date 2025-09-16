@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2cxnbnoye4ve"]
+
+[ext_resource type="PackedScene" uid="uid://d3gvb13v0yotn" path="res://scenes/ui/ui.tscn" id="1_5kejm"]
+[ext_resource type="PackedScene" uid="uid://dvc0qot3pam3f" path="res://scenes/helpers/GridHelper.tscn" id="2_3n7cs"]
+[ext_resource type="PackedScene" uid="uid://cmilyq0qcnlj5" path="res://scenes/helpers/Simulator.tscn" id="3_p4sme"]
+[ext_resource type="PackedScene" uid="uid://cfgj2ms4wuoqi" path="res://scenes/helpers/PlaceManager.tscn" id="4_n0b0m"]
+
+[node name="LevelTest" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_5kejm")]
+layer = -1
+
+[node name="GridHelper" parent="." instance=ExtResource("2_3n7cs")]
+
+[node name="GridHelper" parent="GridHelper" index="0"]
+zero = Vector2(-4.385, -17.365)
+drawInGame = true
+enabled = true
+
+[node name="Simulator" parent="." instance=ExtResource("3_p4sme")]
+
+[node name="PlaceManager" parent="." instance=ExtResource("4_n0b0m")]
+
+[editable path="GridHelper"]

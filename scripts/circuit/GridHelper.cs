@@ -63,4 +63,15 @@ public partial class GridHelper : Node2D
         int gy = Mathf.FloorToInt(pos.Y / instance.cellSize);
         return new Vector2I(gx, gy);
     }
+    public static Vector2I GetGridCoord(Vector2 objPos)
+    {
+        Vector2 pos = instance.ToLocal(objPos) - instance.zero;
+        int gx = Mathf.FloorToInt(pos.X / instance.cellSize);
+        int gy = Mathf.FloorToInt(pos.Y / instance.cellSize);
+        return new Vector2I(gx, gy);
+    }
+    public static Vector2 GetWorldCoord(Vector2I objPos)
+    {
+        return ((Vector2)objPos + new Vector2(0.5f, 0.5f)) * instance.cellSize + instance.zero;
+    }
 }

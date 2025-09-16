@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfgj2ms4wuoqi"]
+
+[ext_resource type="Script" uid="uid://w1jvj7dj3n2v" path="res://scripts/circuit/PlacementManager.cs" id="1_7kbdk"]
+[ext_resource type="PackedScene" uid="uid://bxh2vyj0egwqq" path="res://scenes/Components/Wire.tscn" id="2_3mbde"]
+
+[node name="PlaceManager" type="Node2D"]
+script = ExtResource("1_7kbdk")
+wireScene = ExtResource("2_3mbde")

@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dkqwtr4rnmqrm"]
 
 [ext_resource type="PackedScene" uid="uid://d3gvb13v0yotn" path="res://scenes/ui/ui.tscn" id="1_iho50"]
-[ext_resource type="PackedScene" uid="uid://dvc0qot3pam3f" path="res://scenes/GridHelper.tscn" id="2_3wh16"]
+[ext_resource type="PackedScene" uid="uid://dvc0qot3pam3f" path="res://scenes/helpers/GridHelper.tscn" id="2_3wh16"]
 [ext_resource type="PackedScene" uid="uid://b64hqmj73nx1d" path="res://scenes/Components/Battery.tscn" id="3_5yd65"]
 [ext_resource type="PackedScene" uid="uid://bxh2vyj0egwqq" path="res://scenes/Components/Wire.tscn" id="4_y0s4v"]
 [ext_resource type="PackedScene" uid="uid://otyp7csj7frk" path="res://scenes/Components/Resistor.tscn" id="5_tt56a"]
-[ext_resource type="PackedScene" uid="uid://cmilyq0qcnlj5" path="res://scenes/Simulator.tscn" id="6_y0s4v"]
+[ext_resource type="PackedScene" uid="uid://cmilyq0qcnlj5" path="res://scenes/helpers/Simulator.tscn" id="6_y0s4v"]
 [ext_resource type="PackedScene" uid="uid://c3l0k0i45bovn" path="res://scenes/Components/Capacitor.tscn" id="8_sop0g"]
 [ext_resource type="Script" uid="uid://bc6og24jt8opx" path="res://scripts/circuit/Components/CapacitorProperty.cs" id="9_vac4a"]
 

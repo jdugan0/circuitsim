@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CircuitSim"
-run/main_scene="uid://dkqwtr4rnmqrm"
+run/main_scene="uid://b2cxnbnoye4ve"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 Sceneswitcher="*res://scripts/SceneSwitcher/Sceneswitcher.tscn"
 ParticleManager="*res://scripts/ParticleManager/ParticleManager.tscn"
-Audiomanager="*res://scripts/Audio/Audiomanager.tscn"
+Audiomanager="*res://Audio/Audiomanager.tscn"
 
 [display]
 
@@ -38,3 +38,11 @@ project/assembly_name="CircuitSim"
 pin=""
 wire=""
 component=""
+
+[input]
+
+PLACE={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(74, 31),"global_position":Vector2(86, 127),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}

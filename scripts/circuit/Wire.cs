@@ -6,6 +6,9 @@ public partial class Wire : Node2D
 {
     [Export] public Pin startCell { get; private set; }
     [Export] public Pin endCell { get; private set; }
+    Line2D line;
+    [Export] Color lineColor = new Color(1, 1, 1);
+    [Export] float lineWidth = 2;
 
     public bool GetConnectableAlongY()
     {
@@ -18,8 +21,18 @@ public partial class Wire : Node2D
 
     public override void _Process(double delta)
     {
-        // GD.Print(string.Join(",", CoveredCells()));
+        line.SetPointPosition(0, startCell.GlobalPosition);
+        line.SetPointPosition(1, endCell.GlobalPosition);
     }
+    public override void _Ready()
+    {
+        line = new Line2D();
+        AddChild(line);
+        line.Width = lineWidth;
+        line.DefaultColor = lineColor;
+        line.Points = new Vector2[2];
+    }
+
 
     public bool GetConnected(Vector2I gridCoord)
     {
