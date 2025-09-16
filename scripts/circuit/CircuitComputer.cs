@@ -33,14 +33,19 @@ public partial class CircuitComputer : Node
         }
         foreach (var w in wires)
         {
-            Vector2I? prev = null;
-            foreach (var c in w.CoveredCells())
+            var startGc = w.startCell.GetGridCoord();
+            var endGc = w.endCell.GetGridCoord();
+            dsu.Add(startGc);
+            dsu.Add(endGc);
+            dsu.Union(startGc, endGc);
+
+            foreach (var cell in w.CoveredCells())
             {
-                dsu.Add(c);
-                if (prev.HasValue) dsu.Union(prev.Value, c);
-                if (pinsAtCell.TryGetValue(c, out var plist))
-                    foreach (var p in plist) dsu.Union(c, p.GetGridCoord());
-                prev = c;
+                if (pinsAtCell.TryGetValue(cell, out var overlappedPins))
+                {
+                    foreach (var p in overlappedPins)
+                        dsu.Union(startGc, p.GetGridCoord());
+                }
             }
         }
         pinNet.Clear();
