@@ -40,7 +40,7 @@ public partial class Wire : Node2D
 
         // GD.Print("mouseY: " + mouse.Y + " slope: " + slope * mouse.X + lineWidth);
         float onLine = (mouse.X - startCell.Position.X) * slope + startCell.GlobalPosition.Y;
-        return mouse.X > smallX && mouse.X < bigX && mouse.Y < onLine + lineWidth * 2.5 && mouse.Y > onLine - lineWidth * 2.5;
+        return mouse.X > smallX && mouse.X < bigX && mouse.Y < onLine + lineWidth * 3.5 && mouse.Y > onLine - lineWidth * 3.5;
     }
 
     public Pin GetClosestPin()
