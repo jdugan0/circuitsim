@@ -13,7 +13,8 @@ layer = -1
 [node name="GridHelper" parent="." instance=ExtResource("2_3n7cs")]
 
 [node name="GridHelper" parent="GridHelper" index="0"]
-zero = Vector2(-4.385, -17.365)
+cellSize = 30
+zero = Vector2(960, 540)
 drawInGame = true
 enabled = true
 

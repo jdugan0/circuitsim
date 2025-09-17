@@ -6,7 +6,7 @@ public partial class GridHelper : Node2D
 {
     [Export] public int cellSize = 100;
     [Export] public Vector2 zero = Vector2.Zero;
-    static GridHelper instance;
+    public static GridHelper instance;
     [Export] public Color lineColor = new Color(1, 1, 1, 0.25f);
     [Export] public float lineWidth = 1.0f;
     [Export] public bool drawInGame = false;

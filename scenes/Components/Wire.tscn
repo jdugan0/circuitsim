@@ -3,14 +3,18 @@
 [ext_resource type="Script" uid="uid://cf2n6b4pfo1at" path="res://scripts/circuit/Wire.cs" id="1_ghwwn"]
 [ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="1_mex8t"]
 
-[node name="Wire" type="Node2D" node_paths=PackedStringArray("startCell", "endCell") groups=["wire"]]
+[node name="Wire" type="Node2D" node_paths=PackedStringArray("startCell", "endCell", "line") groups=["wire"]]
 modulate = Color(5.53504e-07, 0.481572, 0.297868, 1)
 script = ExtResource("1_ghwwn")
 startCell = NodePath("Pin")
 endCell = NodePath("Pin2")
+line = NodePath("Line2D")
+lineWidth = 10.0
 
 [node name="Pin2" parent="." instance=ExtResource("1_mex8t")]
 position = Vector2(-25, 0)
 
 [node name="Pin" parent="." instance=ExtResource("1_mex8t")]
 position = Vector2(40, 1)
+
+[node name="Line2D" type="Line2D" parent="."]
