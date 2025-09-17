@@ -35,12 +35,12 @@ public partial class Wire : Node2D
     {
         Vector2 mouse = GetGlobalMousePosition();
         float slope = (endCell.GlobalPosition.Y - startCell.GlobalPosition.Y) / (endCell.GlobalPosition.X - startCell.GlobalPosition.X);
-        float smallX = Math.Min(startCell.GlobalPosition.X + GridHelper.instance.cellSize / 2, endCell.GlobalPosition.X + GridHelper.instance.cellSize / 2);
-        float bigX = Math.Max(startCell.GlobalPosition.X - GridHelper.instance.cellSize / 2, endCell.GlobalPosition.X - GridHelper.instance.cellSize / 2);
+        float smallX = Math.Min(startCell.GlobalPosition.X + GridHelper.instance.cellSize / 5, endCell.GlobalPosition.X + GridHelper.instance.cellSize / 5);
+        float bigX = Math.Max(startCell.GlobalPosition.X - GridHelper.instance.cellSize / 5f, endCell.GlobalPosition.X - GridHelper.instance.cellSize / 5);
 
         // GD.Print("mouseY: " + mouse.Y + " slope: " + slope * mouse.X + lineWidth);
         float onLine = (mouse.X - startCell.Position.X) * slope + startCell.GlobalPosition.Y;
-        return mouse.X > smallX && mouse.X < bigX && mouse.Y < onLine + lineWidth * 2 && mouse.Y > onLine - lineWidth * 2;
+        return mouse.X > smallX && mouse.X < bigX && mouse.Y < onLine + lineWidth * 2.5 && mouse.Y > onLine - lineWidth * 2.5;
     }
 
     public Pin GetClosestPin()
