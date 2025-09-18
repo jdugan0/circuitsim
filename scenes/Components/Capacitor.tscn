@@ -15,7 +15,7 @@ pins = [NodePath("Pin"), NodePath("Pin2")]
 componentProperty = SubResource("Resource_ry4dy")
 
 [node name="Pin" parent="." instance=ExtResource("3_jy1wl")]
-position = Vector2(-34, 0)
+position = Vector2(-15, 0)
 
 [node name="Pin2" parent="." instance=ExtResource("3_jy1wl")]
-position = Vector2(35, 0)
+position = Vector2(15, 0)
