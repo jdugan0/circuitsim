@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2yj78a3lkxr0"]
+
+[ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_pun8v"]
+[ext_resource type="Script" uid="uid://bkms11jufa7ti" path="res://scripts/circuit/Components/AmmeterProperty.cs" id="2_pun8v"]
+[ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_y5mdt"]
+
+[sub_resource type="Resource" id="Resource_fqkxe"]
+script = ExtResource("2_pun8v")
+metadata/_custom_type_script = "uid://bkms11jufa7ti"
+
+[node name="Ammeter" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
+modulate = Color(0.722662, 0, 0.203542, 1)
+script = ExtResource("1_pun8v")
+pins = [NodePath("Pin"), NodePath("Pin2")]
+componentProperty = SubResource("Resource_fqkxe")
+
+[node name="Pin" parent="." instance=ExtResource("3_y5mdt")]
+position = Vector2(-15, 0)
+isGround = true
+
+[node name="Pin2" parent="." instance=ExtResource("3_y5mdt")]
+position = Vector2(15, 0)
