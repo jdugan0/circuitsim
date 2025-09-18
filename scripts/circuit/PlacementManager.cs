@@ -74,4 +74,10 @@ public partial class PlacementManager : Node2D
         }
     }
 
+    public void PowerBlow(Component component)
+    {
+        component.QueueFree();
+        EmitSignal(SignalName.OnGridChange);
+    }
+
 }

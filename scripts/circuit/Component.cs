@@ -5,10 +5,17 @@ public partial class Component : Node
 {
     [Export] public Pin[] pins { get; private set; }
     [Export] public ComponentProperty componentProperty;
+    [Export] public double maxEnergy = 10;
+    double energy;
     public double solvedCurrent;
     public double solvedVoltage;
     public override void _Process(double delta)
     {
+        energy += solvedCurrent * solvedCurrent * solvedCurrent * delta;
+        if (energy >= maxEnergy)
+        {
+            PlacementManager.instance.PowerBlow(this);
+        }
     }
     public override void _Ready()
     {
