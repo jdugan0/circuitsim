@@ -8,17 +8,22 @@ public partial class PlacementManager : Node2D
     Wire wire = null;
     Wire toDrag = null;
     Pin closest;
+    [Signal] public delegate void OnGridChangeEventHandler();
+    public static PlacementManager instance;
+    public override void _Ready()
+    {
+        instance = this;
+    }
+
     public override void _Process(double delta)
     {
+        Wire[] wires = Array.ConvertAll<Node, Wire>(GetTree().GetNodesInGroup("wire").ToArray<Node>(), (x) => (Wire)x);
         Vector2 mouse = GetGlobalMousePosition();
-
         Vector2I mouseCell = GridHelper.GetGridCoord(mouse);
 
 
         if (Input.IsActionJustPressed("PLACE"))
         {
-            Wire[] wires = Array.ConvertAll<Node, Wire>(GetTree().GetNodesInGroup("wire").ToArray<Node>(), (x) => (Wire)x);
-
             if (toDrag == null)
             {
                 foreach (Wire w in wires)
@@ -61,6 +66,11 @@ public partial class PlacementManager : Node2D
             wire = null;
             closest = null;
             toDrag = null;
+        }
+
+        if (wire != null || toDrag != null)
+        {
+            EmitSignal(SignalName.OnGridChange);
         }
     }
 

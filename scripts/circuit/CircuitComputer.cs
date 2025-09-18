@@ -10,13 +10,21 @@ public partial class CircuitComputer : Node
     Dictionary<Pin, Vector2I> pinNet = new();
     private Dictionary<Vector2I, int> netToIndex = new();
     public static double dt;
-    public override void _Process(double delta)
+    Pin[] pins;
+    Wire[] wires;
+    Component[] components;
+    Dictionary<Vector2I, HashSet<Vector2I>> groups = new Dictionary<Vector2I, HashSet<Vector2I>>();
+    public override void _Ready()
     {
-        dt = delta;
-        Pin[] pins = Array.ConvertAll<Node, Pin>(GetTree().GetNodesInGroup("pin").ToArray<Node>(), (x) => (Pin)x);
-        Wire[] wires = Array.ConvertAll<Node, Wire>(GetTree().GetNodesInGroup("wire").ToArray<Node>(), (x) => (Wire)x);
-        Component[] components = Array.ConvertAll<Node, Component>(GetTree().GetNodesInGroup("component").ToArray<Node>(), (x) => (Component)x);
+        PlacementManager.instance.OnGridChange += UpdateDSU;
+        UpdateDSU();
+    }
 
+    public void UpdateDSU()
+    {
+        pins = Array.ConvertAll<Node, Pin>(GetTree().GetNodesInGroup("pin").ToArray<Node>(), (x) => (Pin)x);
+        wires = Array.ConvertAll<Node, Wire>(GetTree().GetNodesInGroup("wire").ToArray<Node>(), (x) => (Wire)x);
+        components = Array.ConvertAll<Node, Component>(GetTree().GetNodesInGroup("component").ToArray<Node>(), (x) => (Component)x);
         var dsu = new DSU<Vector2I>();
         var pinsAtCell = new Dictionary<Vector2I, List<Pin>>();
 
@@ -51,8 +59,6 @@ public partial class CircuitComputer : Node
         pinNet.Clear();
         foreach (var p in pins) pinNet[p] = dsu.Find(p.GetGridCoord());
 
-
-
         var nets = pinNet.Values.Distinct().ToList();
         // GD.Print(nets.Count);
         var netDsu = new DSU<Vector2I>();
@@ -63,13 +69,18 @@ public partial class CircuitComputer : Node
             for (int k = 1; k < c.pins.Length; k++)
                 netDsu.Union(n0, pinNet[c.pins[k]]);
         }
-        var groups = new Dictionary<Vector2I, HashSet<Vector2I>>();
+        groups = new Dictionary<Vector2I, HashSet<Vector2I>>();
         foreach (var net in nets)
         {
             var root = netDsu.Find(net);
             if (!groups.ContainsKey(root)) groups[root] = new HashSet<Vector2I>();
             groups[root].Add(net);
         }
+    }
+
+    public override void _Process(double delta)
+    {
+        dt = delta;
 
         foreach (var kv in groups)
         {
