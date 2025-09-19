@@ -13,10 +13,11 @@ public partial class CircuitComputer : Node
     Pin[] pins;
     Wire[] wires;
     Component[] components;
+    [Export] PlacementManager placementManager;
     Dictionary<Vector2I, HashSet<Vector2I>> groups = new Dictionary<Vector2I, HashSet<Vector2I>>();
     public override void _Ready()
     {
-        PlacementManager.instance.OnGridChange += UpdateDSU;
+        placementManager.OnGridChange += UpdateDSU;
         UpdateDSU();
     }
 

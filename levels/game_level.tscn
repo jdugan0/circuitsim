@@ -18,7 +18,8 @@ zero = Vector2(960, 540)
 drawInGame = true
 enabled = true
 
-[node name="Simulator" parent="." instance=ExtResource("3_p4sme")]
+[node name="Simulator" parent="." node_paths=PackedStringArray("placementManager") instance=ExtResource("3_p4sme")]
+placementManager = NodePath("../PlaceManager")
 
 [node name="PlaceManager" parent="." instance=ExtResource("4_n0b0m")]
 
