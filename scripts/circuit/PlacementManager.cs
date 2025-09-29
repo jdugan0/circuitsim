@@ -9,6 +9,11 @@ public partial class PlacementManager : Node2D
     Wire toDrag = null;
     Pin closest;
     [Signal] public delegate void OnGridChangeEventHandler();
+    public static PlacementManager instance;
+    public override void _Ready()
+    {
+        instance = this;
+    }
 
     public override void _Process(double delta)
     {

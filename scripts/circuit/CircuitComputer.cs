@@ -105,17 +105,5 @@ public partial class CircuitComputer : Node
 
         return netsInIsland.OrderBy(v => v.X).ThenBy(v => v.Y).First();
     }
-    public bool AreConnected(Component A, Component B)
-    {
-        var aNets = A.pins.Select(p => pinNet[p]).ToHashSet();
-        return B.pins.Any(p => aNets.Contains(pinNet[p]));
-    }
-
-    public int NodeIndexFor(Pin p)
-    {
-        var net = pinNet[p];
-        var nets = pinNet.Values.Distinct().ToList();
-        return net == nets[0] ? -1 : netToIndex[net];
-    }
 
 }
