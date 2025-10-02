@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3sj8ulko1skw"]
+
+[ext_resource type="PackedScene" uid="uid://dp8bqsiqcctc4" path="res://scenes/Components/OldComponents/Inductor.tscn" id="1_0hxj0"]
+[ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="2_4pw85"]
+
+[node name="InductorDraggable" type="Node2D"]
+
+[node name="Inductor" parent="." instance=ExtResource("1_0hxj0")]
+
+[node name="Draggable" parent="." instance=ExtResource("2_4pw85")]

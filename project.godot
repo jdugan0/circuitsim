@@ -38,6 +38,7 @@ project/assembly_name="CircuitSim"
 pin=""
 wire=""
 component=""
+draggable=""
 
 [input]
 

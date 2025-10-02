@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://5jt132sm7rit"]
+
+[ext_resource type="PackedScene" uid="uid://b2yj78a3lkxr0" path="res://scenes/Components/OldComponents/Ammeter.tscn" id="1_2p58t"]
+[ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="2_1owhp"]
+
+[node name="AmmeterDraggable" type="Node2D"]
+
+[node name="Ammeter" parent="." instance=ExtResource("1_2p58t")]
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_1owhp")]
+moveTarget = NodePath("../Ammeter")

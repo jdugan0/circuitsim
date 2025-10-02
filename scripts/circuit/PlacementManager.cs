@@ -6,8 +6,9 @@ public partial class PlacementManager : Node2D
 {
     [Export] PackedScene wireScene;
     Wire wire = null;
-    Wire toDrag = null;
+    Wire wireToDrag = null;
     Pin closest;
+    Draggable currentDrag;
     [Signal] public delegate void OnGridChangeEventHandler();
     public static PlacementManager instance;
     public override void _Ready()
@@ -18,26 +19,35 @@ public partial class PlacementManager : Node2D
     public override void _Process(double delta)
     {
         Wire[] wires = Array.ConvertAll<Node, Wire>(GetTree().GetNodesInGroup("wire").ToArray<Node>(), (x) => (Wire)x);
+        Draggable[] draggables = Array.ConvertAll<Node, Draggable>(GetTree().GetNodesInGroup("draggable").ToArray<Node>(), (x) => (Draggable)x);
         Vector2 mouse = GetGlobalMousePosition();
         Vector2I mouseCell = GridHelper.GetGridCoord(mouse);
 
 
         if (Input.IsActionJustPressed("PLACE"))
         {
-            if (toDrag == null)
+            foreach (Draggable d in draggables)
+            {
+                if (d.IsMouseOver())
+                {
+                    currentDrag = d;
+                    currentDrag.BeginDrag();
+                    break;
+                }
+            }
+            if (currentDrag == null)
             {
                 foreach (Wire w in wires)
                 {
                     if (w.IsMouseOver())
                     {
-                        toDrag = w;
-                        closest = toDrag.GetClosestPin();
+                        wireToDrag = w;
+                        closest = wireToDrag.GetClosestPin();
                         break;
                     }
                 }
-
             }
-            if (toDrag == null)
+            if (wireToDrag == null && currentDrag == null)
             {
                 wire = (Wire)wireScene.Instantiate();
                 AddChild(wire);
@@ -56,19 +66,25 @@ public partial class PlacementManager : Node2D
                 }
 
             }
-            if (toDrag != null && closest != null)
+            if (wireToDrag != null && closest != null)
             {
                 closest.GlobalPosition = GridHelper.GetWorldCoord(mouseCell);
+            }
+            if (currentDrag != null)
+            {
+                currentDrag.SetGridCoord(mouse);
             }
         }
         if (Input.IsActionJustReleased("PLACE"))
         {
             wire = null;
             closest = null;
-            toDrag = null;
+            wireToDrag = null;
+            if (currentDrag != null) currentDrag.EndDrag();
+            currentDrag = null;
         }
 
-        if (wire != null || toDrag != null)
+        if (wire != null || wireToDrag != null || currentDrag != null)
         {
             EmitSignal(SignalName.OnGridChange);
         }

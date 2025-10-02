@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmh484ki68pom"]
+
+[ext_resource type="PackedScene" uid="uid://b64hqmj73nx1d" path="res://scenes/Components/OldComponents/Battery.tscn" id="1_borwe"]
+[ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="2_px2b8"]
+
+[node name="BatteryDraggable" type="Node2D"]
+
+[node name="Battery" parent="." instance=ExtResource("1_borwe")]
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_px2b8")]
+moveTarget = NodePath("../Battery")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8y50sv1oy1yg"]
+
+[ext_resource type="PackedScene" uid="uid://c3l0k0i45bovn" path="res://scenes/Components/OldComponents/Capacitor.tscn" id="1_5qii5"]
+[ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="2_hswvj"]
+
+[node name="CapacitorDraggable" type="Node2D"]
+
+[node name="Capacitor" parent="." instance=ExtResource("1_5qii5")]
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_hswvj")]
+moveTarget = NodePath("../Capacitor")

@@ -19,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_m6e0p")
 
 [node name="FullMargin" type="MarginContainer" parent="BackgroundPanel"]
@@ -138,6 +139,7 @@ theme_override_constants/separation = 10
 self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 stretch_mode = 0
 
@@ -148,6 +150,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 text = "SAVE"
 label_settings = SubResource("LabelSettings_27fn8")
 horizontal_alignment = 1
@@ -157,6 +160,7 @@ vertical_alignment = 1
 self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 stretch_mode = 0
 
@@ -167,6 +171,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 text = "LOAD"
 label_settings = SubResource("LabelSettings_27fn8")
 horizontal_alignment = 1
@@ -176,6 +181,7 @@ vertical_alignment = 1
 self_modulate = Color(0.374139, 0.374139, 0.374139, 1)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 stretch_mode = 0
 
@@ -186,6 +192,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 text = "SETTINGS"
 label_settings = SubResource("LabelSettings_27fn8")
 horizontal_alignment = 1
@@ -193,11 +200,13 @@ vertical_alignment = 1
 
 [node name="ClearButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu"]
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 
 [node name="GridTEMP" type="Panel" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox"]
 custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nltto")
 
 [node name="BRTileScreen" type="TextureRect" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox"]
@@ -221,6 +230,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ValueEditorContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Value of selected component"
 label_settings = SubResource("LabelSettings_27fn8")
 vertical_alignment = 1
@@ -245,35 +255,42 @@ alignment = 1
 [node name="RedButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 
 [node name="GreenButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 
 [node name="BlueButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
 modulate = Color(0, 0, 1, 1)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 
 [node name="YellowButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 
 [node name="PurpleButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
 modulate = Color(1, 0, 1, 1)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 
 [node name="BlackButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
 modulate = Color(0.197937, 0.197937, 0.197937, 1)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 
 [node name="WhiteButton" type="TextureButton" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/ColorContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("1_fyqef")
 
 [node name="MeterReadingContainer" type="MarginContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen"]
@@ -291,6 +308,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/RVBox/BRTileScreen/MeterReadingContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Meter Readings here"
 label_settings = SubResource("LabelSettings_27fn8")
 vertical_alignment = 1
