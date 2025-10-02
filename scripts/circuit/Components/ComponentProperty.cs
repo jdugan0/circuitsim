@@ -11,5 +11,5 @@ public partial class ComponentProperty : Resource
     public virtual double[] eStamp(double[] e) => e;
     public virtual double[] iStamp(double[] i, Pin[] p) => i;
     public virtual (double voltage, double current) ComputeCurrents(Pin[] pins, double[] fullSolution, int n) { return (0, 0); }
-    public virtual bool IsActive => true;
+    public bool IsActive = true;
 }
