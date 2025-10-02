@@ -39,6 +39,7 @@ pin=""
 wire=""
 component=""
 draggable=""
+blocking=""
 
 [input]
 

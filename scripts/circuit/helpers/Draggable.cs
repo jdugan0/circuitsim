@@ -8,7 +8,7 @@ public partial class Draggable : Area2D
     [Export] public Node2D moveTarget;
     public void EnterArea(Area2D area)
     {
-        if (area is Draggable) inArea = area;
+        if (area.IsInGroup("draggable") || area.IsInGroup("blocking")) inArea = area;
     }
     public void ExitArea(Area2D area)
     {
@@ -34,7 +34,7 @@ public partial class Draggable : Area2D
             return;
         }
 
-        if (inital == null)
+        if (inital == null || inArea.IsInGroup("blocking"))
         {
             GetParent().QueueFree();
             moveTarget.QueueFree();
