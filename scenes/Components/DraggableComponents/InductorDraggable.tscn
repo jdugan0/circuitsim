@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3sj8ulko1skw"]
+[gd_scene load_steps=5 format=3 uid="uid://b3sj8ulko1skw"]
 
 [ext_resource type="PackedScene" uid="uid://dp8bqsiqcctc4" path="res://scenes/Components/OldComponents/Inductor.tscn" id="1_0hxj0"]
 [ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="2_4pw85"]
+[ext_resource type="Script" uid="uid://c7a45inhl4a6i" path="res://scripts/circuit/Components/InductorProperty.cs" id="2_gyo1g"]
+
+[sub_resource type="Resource" id="Resource_ttijk"]
+script = ExtResource("2_gyo1g")
+L = 0.1
+metadata/_custom_type_script = "uid://c7a45inhl4a6i"
 
 [node name="InductorDraggable" type="Node2D"]
 
 [node name="Inductor" parent="." instance=ExtResource("1_0hxj0")]
+componentProperty = SubResource("Resource_ttijk")
 
-[node name="Draggable" parent="." instance=ExtResource("2_4pw85")]
+[node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_4pw85")]
+moveTarget = NodePath("../Inductor")

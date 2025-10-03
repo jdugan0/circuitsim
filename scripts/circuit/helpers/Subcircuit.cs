@@ -36,7 +36,7 @@ public sealed class Subcircuit
             if (nets.Contains(netOf(p))) pins.Add(p);
         components.Clear();
         foreach (var c in allComponents)
-            if (c.pins != null && c.pins.Any(p => nets.Contains(netOf(p))) && c.componentProperty.IsActive) components.Add(c);
+            if (c.pins != null && c.pins.Any(p => nets.Contains(netOf(p))) && c.IsActive) components.Add(c);
         groundNet = chooseGround(nets, pins);
         int idx = 0;
         // deterministic ordering:
@@ -48,7 +48,7 @@ public sealed class Subcircuit
             p.netIndex = (netOf(p) == groundNet) ? -1 : netToIndex[netOf(p)];
         vSourceComponents.Clear();
         foreach (var c in components)
-            if (c.componentProperty is CurrentEquation vsp && vsp.IsActive) vSourceComponents.Add(vsp);
+            if (c.componentProperty is CurrentEquation vsp && c.IsActive) vSourceComponents.Add(vsp);
 
         for (int k = 0; k < vSourceComponents.Count; ++k)
             vSourceComponents[k].vIndex = k;

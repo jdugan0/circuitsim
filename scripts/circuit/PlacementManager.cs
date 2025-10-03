@@ -88,19 +88,20 @@ public partial class PlacementManager : Node2D
         {
             if (currentDrag != null || wire != null || wireToDrag != null || closest != null)
             {
-                EmitSignal(SignalName.OnGridChange);
+                if ((currentDrag != null && currentDrag.EndDrag()) || currentDrag == null)
+                    EmitSignal(SignalName.OnGridChange);
             }
             wire = null;
             closest = null;
             wireToDrag = null;
-            if (currentDrag != null) currentDrag.EndDrag();
             currentDrag = null;
         }
+
     }
 
     public void PowerBlow(Component component)
     {
-        component.componentProperty.IsActive = false;
+        // component.IsActive = false;
         EmitSignal(SignalName.OnGridChange);
     }
 

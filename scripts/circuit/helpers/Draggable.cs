@@ -26,12 +26,12 @@ public partial class Draggable : Area2D
     {
 
     }
-    public void EndDrag()
+    public bool EndDrag()
     {
         if (inArea == null)
         {
             inital = GlobalPosition;
-            return;
+            return true;
         }
 
         if (inital == null || inArea.IsInGroup("blocking"))
@@ -39,11 +39,12 @@ public partial class Draggable : Area2D
             GetParent().QueueFree();
             moveTarget.QueueFree();
             QueueFree();
-            return;
+            return false;
         }
 
         GlobalPosition = inital.Value;
         moveTarget.GlobalPosition = inital.Value;
+        return false;
     }
     public void SetGridCoord(Vector2 coord)
     {

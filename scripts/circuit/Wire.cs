@@ -34,13 +34,27 @@ public partial class Wire : Node2D
     public bool IsMouseOver()
     {
         Vector2 mouse = GetGlobalMousePosition();
-        float slope = (endCell.GlobalPosition.Y - startCell.GlobalPosition.Y) / (endCell.GlobalPosition.X - startCell.GlobalPosition.X);
-        float smallX = Math.Min(startCell.GlobalPosition.X + GridHelper.instance.cellSize / 5, endCell.GlobalPosition.X + GridHelper.instance.cellSize / 5);
-        float bigX = Math.Max(startCell.GlobalPosition.X - GridHelper.instance.cellSize / 5f, endCell.GlobalPosition.X - GridHelper.instance.cellSize / 5);
+        float deltaX = endCell.GlobalPosition.X - startCell.GlobalPosition.X;
+        float deltaY = endCell.GlobalPosition.Y - startCell.GlobalPosition.Y;
 
-        // GD.Print("mouseY: " + mouse.Y + " slope: " + slope * mouse.X + lineWidth);
-        float onLine = (mouse.X - startCell.Position.X) * slope + startCell.GlobalPosition.Y;
-        return mouse.X > smallX && mouse.X < bigX && mouse.Y < onLine + lineWidth * 3.5 && mouse.Y > onLine - lineWidth * 3.5;
+        // Handle vertical line
+        if (Math.Abs(deltaX) < 0.0001f)
+        {   
+            float smallY = Math.Min(startCell.GlobalPosition.Y + GridHelper.instance.cellSize / 5, endCell.GlobalPosition.Y + GridHelper.instance.cellSize / 5);
+            float bigY = Math.Max(startCell.GlobalPosition.Y - GridHelper.instance.cellSize / 5f, endCell.GlobalPosition.Y - GridHelper.instance.cellSize / 5);
+            float x = startCell.GlobalPosition.X;
+            return mouse.X < x + lineWidth * 3.5 && mouse.X > x - lineWidth * 3.5 && mouse.Y > smallY && mouse.Y < bigY;
+        }
+        else
+        {
+            float slope = deltaY / deltaX;
+            float smallX = Math.Min(startCell.GlobalPosition.X + GridHelper.instance.cellSize / 5, endCell.GlobalPosition.X + GridHelper.instance.cellSize / 5);
+            float bigX = Math.Max(startCell.GlobalPosition.X - GridHelper.instance.cellSize / 5f, endCell.GlobalPosition.X - GridHelper.instance.cellSize / 5);
+
+            // GD.Print("mouseY: " + mouse.Y + " slope: " + slope * mouse.X + lineWidth);
+            float onLine = (mouse.X - startCell.GlobalPosition.X) * slope + startCell.GlobalPosition.Y;
+            return mouse.X > smallX && mouse.X < bigX && mouse.Y < onLine + lineWidth * 3.5 && mouse.Y > onLine - lineWidth * 3.5;
+        }
     }
 
     public Pin GetClosestPin()
