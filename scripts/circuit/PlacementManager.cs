@@ -9,11 +9,20 @@ public partial class PlacementManager : Node2D
     Wire wireToDrag = null;
     Pin closest;
     Draggable currentDrag;
+    public int bounding = 0;
     [Signal] public delegate void OnGridChangeEventHandler();
     public static PlacementManager instance;
     public override void _Ready()
     {
         instance = this;
+    }
+
+    public void AddDrag(PackedScene scene)
+    {
+        Node n = scene.Instantiate();
+        currentDrag = (Draggable)n.GetChild(1);
+        currentDrag.BeginDrag();
+        AddChild(n);
     }
 
     public override void _Process(double delta)
@@ -24,7 +33,7 @@ public partial class PlacementManager : Node2D
         Vector2I mouseCell = GridHelper.GetGridCoord(mouse);
 
 
-        if (Input.IsActionJustPressed("PLACE"))
+        if (Input.IsActionJustPressed("PLACE") && bounding == 0)
         {
             foreach (Draggable d in draggables)
             {
@@ -77,16 +86,15 @@ public partial class PlacementManager : Node2D
         }
         if (Input.IsActionJustReleased("PLACE"))
         {
+            if (currentDrag != null || wire != null || wireToDrag != null || closest != null)
+            {
+                EmitSignal(SignalName.OnGridChange);
+            }
             wire = null;
             closest = null;
             wireToDrag = null;
             if (currentDrag != null) currentDrag.EndDrag();
             currentDrag = null;
-        }
-
-        if (wire != null || wireToDrag != null || currentDrag != null)
-        {
-            EmitSignal(SignalName.OnGridChange);
         }
     }
 

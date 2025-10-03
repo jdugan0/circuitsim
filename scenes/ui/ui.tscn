@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3gvb13v0yotn"]
+[gd_scene load_steps=7 format=3 uid="uid://d3gvb13v0yotn"]
 
+[ext_resource type="Script" uid="uid://ccbicrtegbx6p" path="res://scripts/helpers/Drawer.cs" id="1_aac20"]
 [ext_resource type="Texture2D" uid="uid://dpbghjmrai2ys" path="res://icon.svg" id="1_fyqef"]
+[ext_resource type="PackedScene" uid="uid://bthf5yed4jxij" path="res://scenes/Components/DraggableComponents/ResistorDraggable.tscn" id="2_g5kmx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
 bg_color = Color(0.442911, 0.442911, 0.442911, 1)
@@ -43,9 +45,16 @@ split_offset = 605
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Drawer" type="Control" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox"]
+[node name="Drawer" type="VBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer"]
+layout_mode = 2
+action_mode = 0
+text = "Resistor"
+script = ExtResource("1_aac20")
+scene = ExtResource("2_g5kmx")
 
 [node name="GridContainer" type="GridContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox"]
 layout_mode = 2
@@ -312,3 +321,5 @@ mouse_filter = 1
 text = "Meter Readings here"
 label_settings = SubResource("LabelSettings_27fn8")
 vertical_alignment = 1
+
+[connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button" method="Click"]
