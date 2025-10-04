@@ -13,7 +13,6 @@ metadata/_custom_type_script = "uid://dbwd7hojubn2m"
 
 [node name="Battery" parent="." instance=ExtResource("1_borwe")]
 componentProperty = SubResource("Resource_jf2fo")
-maxEnergy = 9999999999.0
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_px2b8")]
 moveTarget = NodePath("../Battery")

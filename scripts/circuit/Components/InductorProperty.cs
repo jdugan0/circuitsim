@@ -1,10 +1,12 @@
 using System;
 using Godot;
+
 [GlobalClass]
 public partial class InductorProperty : CurrentEquation
 {
     [Export] public double L = 1e-3;
     private double iPrev = 0.0;
+    private double vPrev = 0.0;
 
     public override double[,] BStamp(double[,] B, Pin[] pins)
     {
@@ -26,15 +28,15 @@ public partial class InductorProperty : CurrentEquation
 
     public override double[,] DStamp(double[,] D)
     {
-        double Req = L / Math.Max(CircuitComputer.dt, 1e-15);
+        double Req = 2.0 * L / Math.Max(CircuitComputer.dt, 1e-15);
         MnaUtil.Add(ref D, vIndex, vIndex, -Req);
         return D;
     }
 
     public override double[] eStamp(double[] e)
     {
-        double Req = L / Math.Max(CircuitComputer.dt, 1e-15);
-        e[vIndex] += -Req * iPrev; 
+        double Req = 2.0 * L / Math.Max(CircuitComputer.dt, 1e-15);
+        e[vIndex] += -vPrev - Req * iPrev; 
         return e;
     }
 
@@ -42,7 +44,10 @@ public partial class InductorProperty : CurrentEquation
     {
         double I = fullSolution[nUnknowns + vIndex];
         double V = pins[1].solvedVoltage - pins[0].solvedVoltage;
+        
         iPrev = I;
+        vPrev = V;
+        
         return (V, I);
     }
 }
