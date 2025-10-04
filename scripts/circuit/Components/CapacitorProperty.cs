@@ -7,10 +7,11 @@ public partial class CapacitorProperty : ComponentProperty
     [Export] public double C = 1e-6;
     private double vPrev = 0.0;
     private double iPrev = 0.0;
+    private const double theta = 0.5;
 
     public override double[,] GStamp(double[,] G, Pin[] pins)
     {
-        double g = 2.0 * C / Math.Max(CircuitComputer.dt, 1e-15);
+        double g = C / (Math.Max(CircuitComputer.dt, 1e-15) * theta);
         int n0 = pins[0].netIndex;
         int n1 = pins[1].netIndex;
 
@@ -23,8 +24,8 @@ public partial class CapacitorProperty : ComponentProperty
 
     public override double[] iStamp(double[] i, Pin[] pins)
     {
-        double g = 2.0 * C / Math.Max(CircuitComputer.dt, 1e-15);
-        double Ieq = g * vPrev + iPrev;
+        double g = C / (Math.Max(CircuitComputer.dt, 1e-15) * theta);
+        double Ieq = g * vPrev + ((1.0 - theta) / theta) * iPrev;
 
         int n0 = pins[0].netIndex;
         int n1 = pins[1].netIndex;
@@ -40,8 +41,8 @@ public partial class CapacitorProperty : ComponentProperty
         double vp = pins[1].solvedVoltage;
         double v = vp - vn;
         
-        double g = 2.0 * C / Math.Max(CircuitComputer.dt, 1e-15);
-        double I = g * (v - vPrev) - iPrev;
+        double g = C / (Math.Max(CircuitComputer.dt, 1e-15) * theta);
+        double I = g * (v - vPrev) - ((1.0 - theta) / theta) * iPrev;
 
         vPrev = v;
         iPrev = I;

@@ -7,6 +7,7 @@ public partial class InductorProperty : CurrentEquation
     [Export] public double L = 1e-3;
     private double iPrev = 0.0;
     private double vPrev = 0.0;
+    private const double theta = 0.5;
 
     public override double[,] BStamp(double[,] B, Pin[] pins)
     {
@@ -28,15 +29,15 @@ public partial class InductorProperty : CurrentEquation
 
     public override double[,] DStamp(double[,] D)
     {
-        double Req = 2.0 * L / Math.Max(CircuitComputer.dt, 1e-15);
+        double Req = L / (Math.Max(CircuitComputer.dt, 1e-15) * theta);
         MnaUtil.Add(ref D, vIndex, vIndex, -Req);
         return D;
     }
 
     public override double[] eStamp(double[] e)
     {
-        double Req = 2.0 * L / Math.Max(CircuitComputer.dt, 1e-15);
-        e[vIndex] += -vPrev - Req * iPrev; 
+        double Req = L / (Math.Max(CircuitComputer.dt, 1e-15) * theta);
+        e[vIndex] += -Req * iPrev - ((1.0 - theta) / theta) * vPrev;
         return e;
     }
 
