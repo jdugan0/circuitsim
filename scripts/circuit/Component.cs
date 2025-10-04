@@ -10,7 +10,7 @@
             public double solvedVoltage;
 
             public bool IsActive = true;
-            public override void _Process(double delta)
+            public override void _PhysicsProcess(double delta)
             {
                 energy = Math.Max(0, energy + (((solvedCurrent * solvedVoltage - componentProperty.wattage))) * delta);
                 if (energy >= componentProperty.maxEnergy)

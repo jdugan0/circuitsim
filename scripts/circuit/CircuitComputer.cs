@@ -79,7 +79,7 @@ public partial class CircuitComputer : Node
         }
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         dt = delta;
 

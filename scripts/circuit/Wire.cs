@@ -19,7 +19,7 @@ public partial class Wire : Node2D
         return (startCell.GetGridCoord().Y == endCell.GetGridCoord().Y);
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         line.SetPointPosition(0, startCell.GlobalPosition);
         line.SetPointPosition(1, endCell.GlobalPosition);

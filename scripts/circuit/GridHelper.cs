@@ -45,7 +45,7 @@ public partial class GridHelper : Node2D
         DrawLine(new Vector2(zero.X - n * s, zero.Y), new Vector2(zero.X + n * s, zero.Y),
                  lineColor, lineWidth + 0.5f);
     }
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         // Redraw when values change/moving in editor
         if (Engine.IsEditorHint() || drawInGame)
