@@ -5,7 +5,16 @@ public partial class Draggable : Area2D
     Vector2? inital = null;
     Area2D inArea = null;
     [Export] Vector2 offset = new Vector2(15, 0);
+    [Export] Vector2 realOffset;
     [Export] public Node2D moveTarget;
+    public override void _Ready()
+    {
+        realOffset = offset;
+    }
+    public override void _Process(double delta)
+    {
+        offset = realOffset.Rotated(((Node2D)GetParent()).Rotation);
+    }
     public void EnterArea(Area2D area)
     {
         if (area.IsInGroup("draggable") || area.IsInGroup("blocking")) inArea = area;

@@ -32,7 +32,34 @@ public partial class PlacementManager : Node2D
         Vector2 mouse = GetGlobalMousePosition();
         Vector2I mouseCell = GridHelper.GetGridCoord(mouse);
 
+        if (currentDrag != null && Input.IsActionJustPressed("ROTATEL"))
+        {
+            ((Node2D)currentDrag.GetParent()).RotationDegrees += 90;
+        }
+        if (currentDrag != null && Input.IsActionJustPressed("ROTATER"))
+        {
+            ((Node2D)currentDrag.GetParent()).RotationDegrees -= 90;
+        }
 
+        if (Input.IsActionJustPressed("REMOVE") && currentDrag == null && wire == null && closest == null && wireToDrag == null)
+        {
+            foreach (Draggable d in draggables)
+            {
+                if (d.IsMouseOver())
+                {
+                    d.GetParent().QueueFree();
+                    break;
+                }
+            }
+            foreach (Wire w in wires)
+            {
+                if (w.IsMouseOver())
+                {
+                    w.QueueFree();
+                    break;
+                }
+            }
+        }
         if (Input.IsActionJustPressed("PLACE") && bounding == 0)
         {
             foreach (Draggable d in draggables)
