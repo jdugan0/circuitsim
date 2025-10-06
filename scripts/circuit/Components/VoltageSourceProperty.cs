@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public partial class VoltageSourceProperty : CurrentEquation
 {
     [Export] public float voltage = 0f;
-    [Export] public double R_series = 0.1;
+    [Export] public double R_series = 0;
 
     public override double[,] BStamp(double[,] B, Pin[] pins)
     {

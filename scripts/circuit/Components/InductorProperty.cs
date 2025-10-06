@@ -7,14 +7,14 @@ public partial class InductorProperty : CurrentEquation
     [Export] public double L = 1e-3;
     private double iPrev = 0.0;
     private double vPrev = 0.0;
-    private const double theta = 0.5;
+    private double theta = 0.5;
 
     public override double[,] BStamp(double[,] B, Pin[] pins)
     {
         int n = pins[0].netIndex;
         int p = pins[1].netIndex;
         MnaUtil.Add(ref B, p, vIndex, +1);
-        MnaUtil.Add(ref B, n, vIndex, -1); 
+        MnaUtil.Add(ref B, n, vIndex, -1);
         return B;
     }
 
@@ -41,14 +41,19 @@ public partial class InductorProperty : CurrentEquation
         return e;
     }
 
+    public void SetTheta(double theta)
+    {
+        this.theta = theta;
+    }
+
     public override (double voltage, double current) ComputeCurrents(Pin[] pins, double[] fullSolution, int nUnknowns)
     {
         double I = fullSolution[nUnknowns + vIndex];
         double V = pins[1].solvedVoltage - pins[0].solvedVoltage;
-        
+
         iPrev = I;
         vPrev = V;
-        
+
         return (V, I);
     }
 }

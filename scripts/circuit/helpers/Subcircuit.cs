@@ -19,6 +19,7 @@ public sealed class Subcircuit
     public double[,] Darray; // m x m
     public double[] iArray; // n
     public double[] eArray; // m
+    private Dictionary<int, List<Component>> compsByNode;
 
     public Subcircuit(HashSet<Vector2I> nets, Func<Pin, Vector2I> netOf)
     {
@@ -75,8 +76,78 @@ public sealed class Subcircuit
             iArray = c.componentProperty.iStamp(iArray, c.pins);
         }
     }
+    private void IndexComponentsByNode()
+    {
+        compsByNode = new Dictionary<int, List<Component>>();
+        foreach (var c in components)
+        {
+            foreach (var p in c.pins)
+            {
+                if (p.netIndex < 0) continue;
+                if (!compsByNode.TryGetValue(p.netIndex, out var list))
+                {
+                    list = new List<Component>();
+                    compsByNode[p.netIndex] = list;
+                }
+                list.Add(c);
+            }
+        }
+    }
+
+    private double EstimateLocalSeriesR(int n0, int n1)
+    {
+        double r = double.PositiveInfinity;
+        bool vsp = false;
+
+        void probeNode(int node)
+        {
+            if (node < 0) return;
+            if (!compsByNode.TryGetValue(node, out var list)) return;
+            foreach (var c in list)
+            {
+                if (c.componentProperty is VoltageSourceProperty vs)
+                {
+                    vsp = true;
+                    r = Math.Min(r, Math.Max(0.0, vs.R_series));
+                }
+                if (c.componentProperty is ResistorProperty res)
+                {
+                    r = Math.Min(r, Math.Max(0.0, res.R));
+                }
+            }
+        }
+        probeNode(n0);
+        probeNode(n1);
+
+        if (double.IsPositiveInfinity(r) || vsp) r = 1e-6;
+        if (!vsp) r = double.PositiveInfinity;
+        return r;
+    }
+
+
     public void Solve()
     {
+        IndexComponentsByNode();
+        foreach (var c in components)
+        {
+            if (c.componentProperty is CapacitorProperty cap)
+            {
+                int n0 = c.pins[0].netIndex, n1 = c.pins[1].netIndex;
+                double Rser = EstimateLocalSeriesR(n0, n1);
+                double tau = Rser * cap.C;
+                if (CircuitComputer.dt > 1.0 * Math.Max(1e-15, tau)) cap.SetTheta(1.0);
+                else cap.SetTheta(0.5);
+
+            }
+            else if (c.componentProperty is InductorProperty ind)
+            {
+                int n0 = c.pins[0].netIndex, n1 = c.pins[1].netIndex;
+                double Rser = EstimateLocalSeriesR(n0, n1);
+                double tau = Rser * ind.L;
+                if (CircuitComputer.dt > 1.0 * Math.Max(1e-15, tau)) ind.SetTheta(1.0);
+                else ind.SetTheta(0.5);
+            }
+        }
         int n = Garray.GetLength(0);
         int m = Darray.GetLength(0);
         if (n + m == 0) return;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class ResistorProperty : ComponentProperty
 {
-    [Export] double R;
+    [Export] public double R;
     public override double[,] GStamp(double[,] G, Pin[] pins)
     {
         var n1 = pins[0].netIndex;

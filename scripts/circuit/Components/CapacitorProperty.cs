@@ -7,7 +7,7 @@ public partial class CapacitorProperty : ComponentProperty
     [Export] public double C = 1e-6;
     private double vPrev = 0.0;
     private double iPrev = 0.0;
-    private const double theta = 0.5;
+    private double theta = 0.5;
 
     public override double[,] GStamp(double[,] G, Pin[] pins)
     {
@@ -22,6 +22,10 @@ public partial class CapacitorProperty : ComponentProperty
         return G;
     }
 
+    public void SetTheta(double theta)
+    {
+        this.theta = theta;
+    }
     public override double[] iStamp(double[] i, Pin[] pins)
     {
         double g = C / (Math.Max(CircuitComputer.dt, 1e-15) * theta);
