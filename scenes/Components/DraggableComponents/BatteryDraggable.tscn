@@ -16,3 +16,5 @@ componentProperty = SubResource("Resource_jf2fo")
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_px2b8")]
 moveTarget = NodePath("../Battery")
+
+[editable path="Draggable"]
