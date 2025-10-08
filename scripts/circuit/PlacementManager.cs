@@ -128,7 +128,7 @@ public partial class PlacementManager : Node2D
 
     public void PowerBlow(Component component)
     {
-        // component.IsActive = false;
+        component.IsActive = false;
         EmitSignal(SignalName.OnGridChange);
     }
 

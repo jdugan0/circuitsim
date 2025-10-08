@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7wcjhrgv563b"]
+
+[ext_resource type="PackedScene" uid="uid://g8k4ng1gy14g" path="res://scenes/Components/OldComponents/Diode.tscn" id="2_3jbf2"]
+[ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="2_383jx"]
+
+[node name="DiodeDraggable" type="Node2D"]
+
+[node name="Diode" parent="." instance=ExtResource("2_3jbf2")]
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_383jx")]
+moveTarget = NodePath("../Diode")
+
+[editable path="Draggable"]

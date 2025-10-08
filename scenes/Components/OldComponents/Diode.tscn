@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://g8k4ng1gy14g"]
+
+[ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_qd3d3"]
+[ext_resource type="Script" uid="uid://d4qv0s3jvqa1" path="res://scripts/circuit/Components/DiodeProperty.cs" id="2_qd3d3"]
+[ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_i1imm"]
+
+[sub_resource type="Resource" id="Resource_flfab"]
+script = ExtResource("2_qd3d3")
+metadata/_custom_type_script = "uid://d4qv0s3jvqa1"
+
+[node name="Diode" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
+script = ExtResource("1_qd3d3")
+pins = [NodePath("Pin"), NodePath("Pin2")]
+componentProperty = SubResource("Resource_flfab")
+
+[node name="Pin" parent="." instance=ExtResource("3_i1imm")]
+position = Vector2(-15, 0)
+
+[node name="Pin2" parent="." instance=ExtResource("3_i1imm")]
+position = Vector2(15, 0)

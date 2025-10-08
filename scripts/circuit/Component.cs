@@ -16,12 +16,12 @@ public partial class Component : Node2D
     [Signal] public delegate void DragChangedEventHandler();
     public override void _PhysicsProcess(double delta)
     {
-        energy = Math.Max(0, energy + (((solvedCurrent * solvedVoltage - componentProperty.wattage))) * delta);
+        energy = Math.Max(0, energy + (((Math.Abs(solvedCurrent * solvedVoltage) - componentProperty.wattage))) * delta);
         if (energy >= componentProperty.maxEnergy)
         {
             PlacementManager.instance.PowerBlow(this);
         }
-        if (componentProperty is ResistorProperty)
+        if (componentProperty is AmmeterProperty)
         {
             if (!IsActive)
             {
@@ -29,7 +29,7 @@ public partial class Component : Node2D
             }
             else
             {
-                GD.Print("voltage: " + solvedVoltage + " current: " + solvedCurrent + " energy: " + energy);
+                GD.Print("current: " + solvedCurrent);
             }
         }
         if (!IsActive)
