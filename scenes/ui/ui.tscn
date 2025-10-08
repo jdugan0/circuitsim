@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3gvb13v0yotn"]
+[gd_scene load_steps=12 format=3 uid="uid://d3gvb13v0yotn"]
 
 [ext_resource type="Script" uid="uid://ccbicrtegbx6p" path="res://scripts/helpers/Drawer.cs" id="1_aac20"]
 [ext_resource type="Texture2D" uid="uid://dpbghjmrai2ys" path="res://icon.svg" id="1_fyqef"]
+[ext_resource type="Script" uid="uid://mdj181sdm7c5" path="res://scripts/circuit/helpers/UI.cs" id="1_jcn1r"]
 [ext_resource type="PackedScene" uid="uid://bthf5yed4jxij" path="res://scenes/Components/DraggableComponents/ResistorDraggable.tscn" id="2_g5kmx"]
 [ext_resource type="PackedScene" uid="uid://c8y50sv1oy1yg" path="res://scenes/Components/DraggableComponents/CapacitorDraggable.tscn" id="3_g5kmx"]
 [ext_resource type="PackedScene" uid="uid://b3sj8ulko1skw" path="res://scenes/Components/DraggableComponents/InductorDraggable.tscn" id="4_0dwhk"]
@@ -18,6 +19,7 @@ font_size = 64
 bg_color = Color(0.0910176, 0.28756, 0.00553138, 1)
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_jcn1r")
 
 [node name="BackgroundPanel" type="Panel" parent="."]
 anchors_preset = 15
@@ -359,3 +361,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button3" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button3" method="Click"]
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button4" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button4" method="Click"]
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button5" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button5" method="Click"]
+[connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu/ClearButton" to="." method="ClearGrid"]
