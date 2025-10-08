@@ -33,10 +33,19 @@ public partial class Draggable : Area2D
     }
     public void BeginDrag()
     {
-
+        if (moveTarget is Component c)
+        {
+            c.drag = true;
+            c.EmitSignal("DragChanged");
+        }
     }
     public bool EndDrag()
     {
+        if (moveTarget is Component c)
+        {
+            c.drag = false;
+            c.EmitSignal("DragChanged");
+        }
         if (inArea == null)
         {
             inital = GlobalPosition;

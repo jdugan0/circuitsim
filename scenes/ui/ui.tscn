@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3gvb13v0yotn"]
+[gd_scene load_steps=11 format=3 uid="uid://d3gvb13v0yotn"]
 
 [ext_resource type="Script" uid="uid://ccbicrtegbx6p" path="res://scripts/helpers/Drawer.cs" id="1_aac20"]
 [ext_resource type="Texture2D" uid="uid://dpbghjmrai2ys" path="res://icon.svg" id="1_fyqef"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c8y50sv1oy1yg" path="res://scenes/Components/DraggableComponents/CapacitorDraggable.tscn" id="3_g5kmx"]
 [ext_resource type="PackedScene" uid="uid://b3sj8ulko1skw" path="res://scenes/Components/DraggableComponents/InductorDraggable.tscn" id="4_0dwhk"]
 [ext_resource type="PackedScene" uid="uid://bmh484ki68pom" path="res://scenes/Components/DraggableComponents/BatteryDraggable.tscn" id="5_pfayw"]
+[ext_resource type="PackedScene" uid="uid://dj3ueblbor8wx" path="res://scenes/Components/DraggableComponents/SwitchDraggable.tscn" id="6_7vp6q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
 bg_color = Color(0.442911, 0.442911, 0.442911, 1)
@@ -79,6 +80,13 @@ action_mode = 0
 text = "Battery"
 script = ExtResource("1_aac20")
 scene = ExtResource("5_pfayw")
+
+[node name="Button5" type="Button" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer"]
+layout_mode = 2
+action_mode = 0
+text = "Switch"
+script = ExtResource("1_aac20")
+scene = ExtResource("6_7vp6q")
 
 [node name="GridContainer" type="GridContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox"]
 layout_mode = 2
@@ -350,3 +358,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button2" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button2" method="Click"]
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button3" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button3" method="Click"]
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button4" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button4" method="Click"]
+[connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button5" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button5" method="Click"]

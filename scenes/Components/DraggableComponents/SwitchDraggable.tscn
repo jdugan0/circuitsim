@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj3ueblbor8wx"]
+
+[ext_resource type="PackedScene" uid="uid://ci6ym30ed768k" path="res://scenes/Components/OldComponents/Switch.tscn" id="2_l76rs"]
+[ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="2_ww3pu"]
+
+[node name="SwitchDraggable" type="Node2D"]
+
+[node name="Switch" parent="." instance=ExtResource("2_l76rs")]
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_ww3pu")]
+moveTarget = NodePath("../Switch")
+
+[editable path="Draggable"]

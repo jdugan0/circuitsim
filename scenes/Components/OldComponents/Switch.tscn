@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci6ym30ed768k"]
+
+[ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_1khf4"]
+[ext_resource type="Script" uid="uid://e0mmw7a7w1bb" path="res://scripts/circuit/Components/SwitchProperty.cs" id="2_1khf4"]
+[ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_ny1il"]
+
+[sub_resource type="Resource" id="Resource_y8ctd"]
+script = ExtResource("2_1khf4")
+metadata/_custom_type_script = "uid://e0mmw7a7w1bb"
+
+[node name="Switch" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
+script = ExtResource("1_1khf4")
+pins = [NodePath("Pin"), NodePath("Pin2")]
+componentProperty = SubResource("Resource_y8ctd")
+
+[node name="Pin" parent="." instance=ExtResource("3_ny1il")]
+position = Vector2(-15, 0)
+
+[node name="Pin2" parent="." instance=ExtResource("3_ny1il")]
+position = Vector2(15, 0)
