@@ -7,6 +7,8 @@
 [sub_resource type="Resource" id="Resource_jf2fo"]
 script = ExtResource("2_hoq6a")
 voltage = 10.0
+maxEnergy = 100.0
+wattage = 100.0
 metadata/_custom_type_script = "uid://dbwd7hojubn2m"
 
 [node name="BatteryDraggable" type="Node2D"]

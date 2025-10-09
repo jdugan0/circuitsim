@@ -8,6 +8,7 @@
 script = ExtResource("2_6qb07")
 C = 0.1
 maxEnergy = 100.0
+wattage = 10000.0
 metadata/_custom_type_script = "uid://bc6og24jt8opx"
 
 [node name="CapacitorDraggable" type="Node2D"]

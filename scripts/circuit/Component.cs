@@ -16,20 +16,17 @@ public partial class Component : Node2D
     [Signal] public delegate void DragChangedEventHandler();
     public override void _PhysicsProcess(double delta)
     {
-        energy = Math.Max(0, energy + (((Math.Abs(solvedCurrent * solvedVoltage) - componentProperty.wattage))) * delta);
+        energy = Math.Max(0, energy + (Math.Abs(solvedCurrent * solvedVoltage) - componentProperty.wattage) * delta);
         if (energy >= componentProperty.maxEnergy)
         {
+            GD.Print($"voltage: {solvedVoltage} current: {solvedCurrent} energy: {energy}");
             PlacementManager.instance.PowerBlow(this);
         }
         if (componentProperty is CapacitorProperty)
         {
-            if (!IsActive)
+            if (IsActive)
             {
-                GD.Print("boom");
-            }
-            else
-            {
-                GD.Print($"voltage: {solvedVoltage} current: {solvedCurrent} energy: {energy}");
+                GD.Print($"voltage: {solvedVoltage} current: {solvedCurrent} energy: {energy}     {componentProperty.wattage}");
             }
         }
         if (!IsActive)

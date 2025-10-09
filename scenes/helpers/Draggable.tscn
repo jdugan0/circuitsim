@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bh6y557cpppr6" path="res://scripts/circuit/helpers/Draggable.cs" id="1_1jfh2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syw0o"]
-size = Vector2(25, 24)
+size = Vector2(10, 24)
 
 [node name="Draggable" type="Area2D" groups=["draggable"]]
 script = ExtResource("1_1jfh2")
