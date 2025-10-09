@@ -21,7 +21,7 @@ public partial class Component : Node2D
         {
             PlacementManager.instance.PowerBlow(this);
         }
-        if (componentProperty is AmmeterProperty)
+        if (componentProperty is CapacitorProperty)
         {
             if (!IsActive)
             {
@@ -29,7 +29,7 @@ public partial class Component : Node2D
             }
             else
             {
-                GD.Print("current: " + solvedCurrent);
+                GD.Print($"voltage: {solvedVoltage} current: {solvedCurrent} energy: {energy}");
             }
         }
         if (!IsActive)
