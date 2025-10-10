@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3gvb13v0yotn"]
+[gd_scene load_steps=15 format=3 uid="uid://d3gvb13v0yotn"]
 
 [ext_resource type="Script" uid="uid://ccbicrtegbx6p" path="res://scripts/helpers/Drawer.cs" id="1_aac20"]
 [ext_resource type="Texture2D" uid="uid://dpbghjmrai2ys" path="res://icon.svg" id="1_fyqef"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b3sj8ulko1skw" path="res://scenes/Components/DraggableComponents/InductorDraggable.tscn" id="4_0dwhk"]
 [ext_resource type="PackedScene" uid="uid://bmh484ki68pom" path="res://scenes/Components/DraggableComponents/BatteryDraggable.tscn" id="5_pfayw"]
 [ext_resource type="PackedScene" uid="uid://dj3ueblbor8wx" path="res://scenes/Components/DraggableComponents/SwitchDraggable.tscn" id="6_7vp6q"]
+[ext_resource type="PackedScene" uid="uid://551yab1b33ot" path="res://scenes/Components/Voltmeter.tscn" id="9_4kltc"]
 [ext_resource type="PackedScene" uid="uid://5jt132sm7rit" path="res://scenes/Components/DraggableComponents/AmmeterDraggable.tscn" id="9_y220t"]
+[ext_resource type="Script" uid="uid://5ko4kx0ckn7f" path="res://scripts/circuit/helpers/MeterUI.cs" id="10_y220t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
 bg_color = Color(0.442911, 0.442911, 0.442911, 1)
@@ -98,6 +100,23 @@ text = "Ammeter"
 script = ExtResource("1_aac20")
 scene = ExtResource("9_y220t")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer"]
+layout_mode = 2
+
+[node name="Button7" type="Button" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/HBoxContainer"]
+layout_mode = 2
+action_mode = 0
+text = "Voltage+"
+script = ExtResource("1_aac20")
+scene = ExtResource("9_4kltc")
+
+[node name="Button8" type="Button" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/HBoxContainer"]
+layout_mode = 2
+action_mode = 0
+text = "Voltage-"
+script = ExtResource("1_aac20")
+scene = ExtResource("9_4kltc")
+
 [node name="GridContainer" type="GridContainer" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox"]
 layout_mode = 2
 columns = 2
@@ -177,6 +196,12 @@ text = "Help"
 label_settings = SubResource("LabelSettings_27fn8")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label" type="Label" parent="BackgroundPanel/FullMargin/HSplitContainer/LVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+script = ExtResource("10_y220t")
 
 [node name="RVBox" type="VBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer"]
 layout_mode = 2
@@ -370,4 +395,6 @@ vertical_alignment = 1
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button4" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button4" method="Click"]
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button5" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button5" method="Click"]
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button7" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/Button7" method="Click"]
+[connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/HBoxContainer/Button7" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/HBoxContainer/Button7" method="Click" binds= [true]]
+[connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/HBoxContainer/Button8" to="BackgroundPanel/FullMargin/HSplitContainer/LVBox/Drawer/HBoxContainer/Button8" method="Click" binds= [false]]
 [connection signal="pressed" from="BackgroundPanel/FullMargin/HSplitContainer/RVBox/TRMenu/ClearButton" to="." method="ClearGrid"]

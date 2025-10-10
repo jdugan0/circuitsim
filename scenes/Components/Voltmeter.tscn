@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://551yab1b33ot"]
+[gd_scene load_steps=6 format=3 uid="uid://551yab1b33ot"]
 
 [ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_dktqf"]
 [ext_resource type="Script" uid="uid://oqj4fnanfn11" path="res://scripts/circuit/Components/VoltmeterProperty.cs" id="2_dktqf"]
+[ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="3_qi2r6"]
 [ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_ywvve"]
 
 [sub_resource type="Resource" id="Resource_qi2r6"]
@@ -14,9 +15,21 @@ script = ExtResource("1_dktqf")
 pins = [NodePath("Pin"), NodePath("Pin2")]
 componentProperty = SubResource("Resource_qi2r6")
 
-[node name="Pin" parent="." instance=ExtResource("3_ywvve")]
-position = Vector2(-15, 0)
+[node name="Pin" parent="." node_paths=PackedStringArray("draggable") instance=ExtResource("3_ywvve")]
 isGround = true
+disabled = true
+draggable = NodePath("../Draggable")
 
-[node name="Pin2" parent="." instance=ExtResource("3_ywvve")]
+[node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("3_qi2r6")]
+position = Vector2(-15, 0)
+offset = Vector2(0, 0)
+moveTarget = NodePath("../Pin")
+
+[node name="Pin2" parent="." node_paths=PackedStringArray("draggable") instance=ExtResource("3_ywvve")]
+disabled = true
+draggable = NodePath("../Draggable2")
+
+[node name="Draggable2" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("3_qi2r6")]
 position = Vector2(15, 0)
+offset = Vector2(0, 0)
+moveTarget = NodePath("../Pin2")

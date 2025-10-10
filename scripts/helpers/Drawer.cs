@@ -8,4 +8,8 @@ public partial class Drawer : Node
     {
         PlacementManager.instance.AddDrag(scene);
     }
+    public void Click(bool vPlus)
+    {
+        PlacementManager.instance.AddDrag(scene, vPlus);
+    }
 }

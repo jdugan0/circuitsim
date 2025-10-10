@@ -19,15 +19,7 @@ public partial class Component : Node2D
         energy = Math.Max(0, energy + (Math.Abs(solvedCurrent * solvedVoltage) - componentProperty.wattage) * delta);
         if (energy >= componentProperty.maxEnergy)
         {
-            GD.Print($"voltage: {solvedVoltage} current: {solvedCurrent} energy: {energy}");
             PlacementManager.instance.PowerBlow(this);
-        }
-        if (componentProperty is CapacitorProperty)
-        {
-            if (IsActive)
-            {
-                GD.Print($"voltage: {solvedVoltage} current: {solvedCurrent} energy: {energy}     {componentProperty.wattage}");
-            }
         }
         if (!IsActive)
         {
