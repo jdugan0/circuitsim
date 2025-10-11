@@ -51,6 +51,10 @@ public partial class PlacementManager : Node2D
                     voltMeterCurrent.pins[vPlus ? 1 : 0].draggable.BeginDrag();
                 }
             }
+            if (!voltMeterCurrent.pins[1].disabled && !voltMeterCurrent.pins[0].disabled)
+            {
+                voltMeterCurrent = null;
+            }
         }
     }
 

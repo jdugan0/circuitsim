@@ -21,7 +21,6 @@ disabled = true
 draggable = NodePath("../Draggable")
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("3_qi2r6")]
-position = Vector2(-15, 0)
 offset = Vector2(0, 0)
 moveTarget = NodePath("../Pin")
 
@@ -30,6 +29,5 @@ disabled = true
 draggable = NodePath("../Draggable2")
 
 [node name="Draggable2" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("3_qi2r6")]
-position = Vector2(15, 0)
 offset = Vector2(0, 0)
 moveTarget = NodePath("../Pin2")
