@@ -31,6 +31,25 @@ public partial class Component : Node2D
         {
             dragTimer += (float)delta;
         }
+
+        if (componentProperty is VoltmeterProperty)
+        {
+            if (!CircuitComputer.instance.PinsInSameGroup(pins[0], pins[1]))
+            {
+                IsActive = false;
+            }
+            else
+            {
+                IsActive = true;
+            }
+            var net0 = CircuitComputer.instance.GetPinNet(pins[0]);
+            var net1 = CircuitComputer.instance.GetPinNet(pins[1]);
+
+            if (net0 == net1)
+                IsActive = false;
+            else
+                IsActive = true;
+        }
     }
     public override void _Ready()
     {

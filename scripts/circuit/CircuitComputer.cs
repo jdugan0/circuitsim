@@ -15,10 +15,12 @@ public partial class CircuitComputer : Node
     Component[] components;
     [Export] PlacementManager placementManager;
     Dictionary<Vector2I, HashSet<Vector2I>> groups = new Dictionary<Vector2I, HashSet<Vector2I>>();
+    public static CircuitComputer instance;
     public override void _Ready()
     {
         placementManager.OnGridChange += UpdateDSU;
         UpdateDSU();
+        instance = this;
     }
 
     public void UpdateDSU()
@@ -66,8 +68,10 @@ public partial class CircuitComputer : Node
         foreach (var net in nets) netDsu.Add(net);
         foreach (var c in components)
         {
-            if (c.componentProperty is VoltmeterProperty)
+            if (c.componentProperty is VoltmeterProperty v)
+            {
                 continue;
+            }
             var n0 = pinNet[c.pins[0]];
             for (int k = 1; k < c.pins.Length; k++)
                 netDsu.Union(n0, pinNet[c.pins[k]]);
@@ -107,5 +111,29 @@ public partial class CircuitComputer : Node
 
         return netsInIsland.OrderBy(v => v.X).ThenBy(v => v.Y).First();
     }
+
+    public bool PinsInSameGroup(Pin a, Pin b)
+    {
+        if (!pinNet.ContainsKey(a) || !pinNet.ContainsKey(b))
+            return false;
+
+        var netA = pinNet[a];
+        var netB = pinNet[b];
+
+        // find which group each net belongs to
+        foreach (var group in groups.Values)
+        {
+            if (group.Contains(netA) && group.Contains(netB))
+                return true;
+        }
+
+        return false;
+    }
+
+    public Vector2I GetPinNet(Pin pin)
+    {
+        return pinNet.TryGetValue(pin, out var net) ? net : default;
+    }
+
 
 }

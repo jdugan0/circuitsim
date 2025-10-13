@@ -31,10 +31,8 @@ public partial class PlacementManager : Node2D
         Node n = scene.Instantiate();
         if (n is Component c && c.componentProperty is VoltmeterProperty v)
         {
-            GD.Print("2");
             if (voltMeterCurrent == null)
             {
-                GD.Print("3");
                 voltMeterCurrent = (Component)n;
                 voltMeterCurrent.pins[vPlus ? 1 : 0].draggable.BeginDrag();
                 voltMeterCurrent.pins[vPlus ? 1 : 0].disabled = false;
@@ -43,7 +41,6 @@ public partial class PlacementManager : Node2D
             }
             else
             {
-                GD.Print("4");
                 if (voltMeterCurrent.pins[vPlus ? 1 : 0].disabled)
                 {
                     voltMeterCurrent.pins[vPlus ? 1 : 0].disabled = false;
