@@ -43,7 +43,7 @@ public partial class Wire : Node2D
             float smallY = Math.Min(startCell.GlobalPosition.Y + GridHelper.instance.cellSize / 5, endCell.GlobalPosition.Y + GridHelper.instance.cellSize / 5);
             float bigY = Math.Max(startCell.GlobalPosition.Y - GridHelper.instance.cellSize / 5f, endCell.GlobalPosition.Y - GridHelper.instance.cellSize / 5);
             float x = startCell.GlobalPosition.X;
-            return mouse.X < x + lineWidth * 3.5 && mouse.X > x - lineWidth * 3.5 && mouse.Y > smallY && mouse.Y < bigY;
+            return mouse.X < x + lineWidth * 1.25 && mouse.X > x - lineWidth * 1.25 && mouse.Y > smallY && mouse.Y < bigY;
         }
         else
         {
@@ -53,7 +53,7 @@ public partial class Wire : Node2D
 
             // GD.Print("mouseY: " + mouse.Y + " slope: " + slope * mouse.X + lineWidth);
             float onLine = (mouse.X - startCell.GlobalPosition.X) * slope + startCell.GlobalPosition.Y;
-            return mouse.X > smallX && mouse.X < bigX && mouse.Y < onLine + lineWidth * 3.5 && mouse.Y > onLine - lineWidth * 3.5;
+            return mouse.X > smallX && mouse.X < bigX && mouse.Y < onLine + lineWidth * 1.25 && mouse.Y > onLine - lineWidth * 1.25;
         }
     }
 

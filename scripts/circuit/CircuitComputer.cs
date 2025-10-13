@@ -66,6 +66,8 @@ public partial class CircuitComputer : Node
         foreach (var net in nets) netDsu.Add(net);
         foreach (var c in components)
         {
+            if (c.componentProperty is VoltmeterProperty)
+                continue;
             var n0 = pinNet[c.pins[0]];
             for (int k = 1; k < c.pins.Length; k++)
                 netDsu.Union(n0, pinNet[c.pins[k]]);

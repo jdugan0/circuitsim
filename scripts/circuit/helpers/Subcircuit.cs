@@ -97,7 +97,7 @@ public sealed class Subcircuit
     private double EstimateLocalSeriesR(int n0, int n1)
     {
         double r = double.PositiveInfinity;
-        bool vsp = false;
+        bool hasVoltageSource = false;
 
         void probeNode(int node)
         {
@@ -107,20 +107,20 @@ public sealed class Subcircuit
             {
                 if (c.componentProperty is VoltageSourceProperty vs)
                 {
-                    vsp = true;
-                    r = Math.Min(r, Math.Max(0.0, vs.R_series));
+                    hasVoltageSource = true;
+                    r = Math.Min(r, Math.Max(1e-9, vs.R_series));  // Min resistance floor
                 }
-                if (c.componentProperty is ResistorProperty res)
+                else if (c.componentProperty is ResistorProperty res)
                 {
-                    r = Math.Min(r, Math.Max(0.0, res.R));
+                    r = Math.Min(r, Math.Max(1e-9, res.R));
                 }
             }
         }
+
         probeNode(n0);
         probeNode(n1);
-
-        if (double.IsPositiveInfinity(r) || vsp) r = 1e-6;
-        if (!vsp) r = double.PositiveInfinity;
+        if (hasVoltageSource && double.IsPositiveInfinity(r))
+            return 1e-6;
         return r;
     }
 
