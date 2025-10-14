@@ -7,6 +7,7 @@ public partial class Draggable : Area2D
     [Export] Vector2 offset = new Vector2(15, 0);
     [Export] Vector2 realOffset;
     [Export] public Node2D moveTarget;
+    public bool valid;
     public override void _Ready()
     {
         realOffset = offset;
@@ -18,10 +19,12 @@ public partial class Draggable : Area2D
     public void EnterArea(Area2D area)
     {
         if (area.IsInGroup("draggable")) inArea = area;
+        if (area.IsInGroup("valid")) valid = true;
     }
     public void ExitArea(Area2D area)
     {
         if (area == inArea) inArea = null;
+        if (area.IsInGroup("valid")) valid = false;
     }
     public void OnHover()
     {
@@ -46,13 +49,13 @@ public partial class Draggable : Area2D
             c.drag = false;
             c.EmitSignal("DragChanged");
         }
-        if (inArea == null)
+        if (inArea == null && valid)
         {
             inital = GlobalPosition;
             return true;
         }
 
-        if (inital == null)
+        if (inital == null || !valid)
         {
             GetParent().QueueFree();
             moveTarget.QueueFree();

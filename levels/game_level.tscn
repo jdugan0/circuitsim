@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2cxnbnoye4ve"]
+[gd_scene load_steps=6 format=3 uid="uid://b2cxnbnoye4ve"]
 
 [ext_resource type="PackedScene" uid="uid://d3gvb13v0yotn" path="res://scenes/ui/ui.tscn" id="1_5kejm"]
 [ext_resource type="PackedScene" uid="uid://dvc0qot3pam3f" path="res://scenes/helpers/GridHelper.tscn" id="2_3n7cs"]
 [ext_resource type="PackedScene" uid="uid://cmilyq0qcnlj5" path="res://scenes/helpers/Simulator.tscn" id="3_p4sme"]
 [ext_resource type="PackedScene" uid="uid://cfgj2ms4wuoqi" path="res://scenes/helpers/PlaceManager.tscn" id="4_n0b0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0b0m"]
+size = Vector2(1233, 700)
 
 [node name="LevelTest" type="Node2D"]
 
@@ -22,8 +25,15 @@ placementManager = NodePath("../PlaceManager")
 [node name="UI" parent="." instance=ExtResource("1_5kejm")]
 layer = -1
 
-[node name="Blocking regions" type="Node" parent="."]
+[node name="Valid Regions" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Valid Regions" groups=["valid"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Valid Regions/Area2D"]
+position = Vector2(1273.5, 528)
+shape = SubResource("RectangleShape2D_n0b0m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
 
 [editable path="GridHelper"]

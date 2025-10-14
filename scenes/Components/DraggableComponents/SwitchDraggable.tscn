@@ -10,4 +10,7 @@
 [node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_ww3pu")]
 moveTarget = NodePath("../Switch")
 
+[node name="CollisionShape2D" parent="Draggable" index="0"]
+position = Vector2(0, 0.5)
+
 [editable path="Draggable"]
