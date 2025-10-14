@@ -4,7 +4,7 @@ using System;
 [GlobalClass]
 public partial class OhmmeterProperty : ComponentProperty
 {
-    [Export] public double testCurrent = 0.001;
+    [Export] public double testCurrent = 1e-9;
 
     public override double[] iStamp(double[] i, Pin[] pins)
     {
@@ -16,6 +16,8 @@ public partial class OhmmeterProperty : ComponentProperty
     public override (double voltage, double current) ComputeCurrents(Pin[] pins, double[] x, int n)
     {
         double voltage = pins[1].solvedVoltage - pins[0].solvedVoltage;
-        return (voltage / testCurrent, testCurrent);
+        double r = voltage / testCurrent;
+        if (r > 1e5) r = double.PositiveInfinity;
+        return (r, testCurrent);
     }
 }
