@@ -143,7 +143,7 @@ public sealed class Subcircuit
             {
                 int n0 = c.pins[0].netIndex, n1 = c.pins[1].netIndex;
                 double Rser = EstimateLocalSeriesR(n0, n1);
-                double tau = Rser * ind.L;
+                double tau = ind.L / Rser;
                 if (CircuitComputer.dt > 1.0 * Math.Max(1e-15, tau)) ind.SetTheta(1.0);
                 else ind.SetTheta(0.5);
             }

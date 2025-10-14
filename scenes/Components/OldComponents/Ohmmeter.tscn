@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwtidv2p4xqmc"]
+
+[ext_resource type="Script" uid="uid://d3tcxsdm37jvj" path="res://scripts/circuit/Component.cs" id="1_28qyg"]
+[ext_resource type="Script" uid="uid://ck8uxgmsw80uk" path="res://scripts/circuit/Components/OhmmeterProperty.cs" id="2_28qyg"]
+[ext_resource type="PackedScene" uid="uid://gd3mvgx8q2te" path="res://scenes/Components/Pin.tscn" id="3_sl0q2"]
+
+[sub_resource type="Resource" id="Resource_xkpm5"]
+script = ExtResource("2_28qyg")
+metadata/_custom_type_script = "uid://ck8uxgmsw80uk"
+
+[node name="Ohmmeter" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
+modulate = Color(0.722662, 0, 0.203542, 1)
+script = ExtResource("1_28qyg")
+pins = [NodePath("Pin"), NodePath("Pin2")]
+componentProperty = SubResource("Resource_xkpm5")
+
+[node name="Pin" parent="." instance=ExtResource("3_sl0q2")]
+position = Vector2(-15, 0)
+isGround = true
+
+[node name="Pin2" parent="." instance=ExtResource("3_sl0q2")]
+position = Vector2(15, 0)

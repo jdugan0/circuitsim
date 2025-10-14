@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx1yv8jp6ua71"]
+
+[ext_resource type="PackedScene" uid="uid://cwtidv2p4xqmc" path="res://scenes/Components/OldComponents/Ohmmeter.tscn" id="1_2qv4a"]
+[ext_resource type="PackedScene" uid="uid://d2ix1sia2tjex" path="res://scenes/helpers/Draggable.tscn" id="2_i4fev"]
+
+[node name="OhmmeterDraggable" type="Node2D"]
+
+[node name="Ohmmeter" parent="." instance=ExtResource("1_2qv4a")]
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("moveTarget") instance=ExtResource("2_i4fev")]
+moveTarget = NodePath("../Ohmmeter")

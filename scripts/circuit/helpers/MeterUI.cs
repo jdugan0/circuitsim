@@ -11,6 +11,7 @@ public partial class MeterUI : Label
         string s = "";
         int v = 0;
         int i = 0;
+        int o = 0;
         foreach (Component component in components)
         {
             if (component.componentProperty is VoltmeterProperty)
@@ -22,6 +23,11 @@ public partial class MeterUI : Label
             {
                 s += $"Current{i}: {component.solvedCurrent:N2}\n";
                 i++;
+            }
+            if (component.componentProperty is OhmmeterProperty)
+            {
+                s += $"Resistance{o}: {component.solvedVoltage:N2}\n";
+                o++;
             }
         }
         Text = s;

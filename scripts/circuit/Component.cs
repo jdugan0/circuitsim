@@ -16,7 +16,10 @@ public partial class Component : Node2D
     [Signal] public delegate void DragChangedEventHandler();
     public override void _PhysicsProcess(double delta)
     {
-        energy = Math.Max(0, energy + (Math.Abs(solvedCurrent * solvedVoltage) - componentProperty.wattage) * delta);
+        if (!(componentProperty is OhmmeterProperty || componentProperty is VoltmeterProperty || componentProperty is AmmeterProperty))
+        {
+            energy = Math.Max(0, energy + (Math.Abs(solvedCurrent * solvedVoltage) - componentProperty.wattage) * delta);
+        }
         if (energy >= componentProperty.maxEnergy)
         {
             PlacementManager.instance.PowerBlow(this);
