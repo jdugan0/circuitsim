@@ -15,8 +15,8 @@ pins = [NodePath("Pin"), NodePath("Pin2")]
 componentProperty = SubResource("Resource_fqkxe")
 
 [node name="Pin" parent="." instance=ExtResource("3_y5mdt")]
-position = Vector2(-15, 0)
+position = Vector2(-60, 0)
 isGround = true
 
 [node name="Pin2" parent="." instance=ExtResource("3_y5mdt")]
-position = Vector2(15, 0)
+position = Vector2(60, 0)

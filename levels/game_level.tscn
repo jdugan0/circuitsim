@@ -1,30 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2cxnbnoye4ve"]
+[gd_scene load_steps=5 format=3 uid="uid://b2cxnbnoye4ve"]
 
 [ext_resource type="PackedScene" uid="uid://d3gvb13v0yotn" path="res://scenes/ui/ui.tscn" id="1_5kejm"]
 [ext_resource type="PackedScene" uid="uid://dvc0qot3pam3f" path="res://scenes/helpers/GridHelper.tscn" id="2_3n7cs"]
 [ext_resource type="PackedScene" uid="uid://cmilyq0qcnlj5" path="res://scenes/helpers/Simulator.tscn" id="3_p4sme"]
 [ext_resource type="PackedScene" uid="uid://cfgj2ms4wuoqi" path="res://scenes/helpers/PlaceManager.tscn" id="4_n0b0m"]
-[ext_resource type="Script" uid="uid://bfbrgrjbcuvn3" path="res://scripts/helpers/Bounding.cs" id="6_wtvao"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5ty"]
-size = Vector2(1917, 204)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_smvv8"]
-size = Vector2(1920, 209.00002)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtvao"]
-size = Vector2(663, 1144.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kejm"]
-size = Vector2(350, 1196)
 
 [node name="LevelTest" type="Node2D"]
 
 [node name="GridHelper" parent="." instance=ExtResource("2_3n7cs")]
 
 [node name="GridHelper" parent="GridHelper" index="0"]
-cellSize = 30
-zero = Vector2(960, 540)
+cellSize = 60
 drawInGame = true
 enabled = true
 
@@ -38,41 +24,6 @@ layer = -1
 
 [node name="Blocking regions" type="Node" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Blocking regions" groups=["blocking"]]
-script = ExtResource("6_wtvao")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocking regions/Area2D"]
-position = Vector2(952, 84)
-shape = SubResource("RectangleShape2D_2i5ty")
-
-[node name="Area2D3" type="Area2D" parent="Blocking regions" groups=["blocking"]]
-script = ExtResource("6_wtvao")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocking regions/Area2D3"]
-position = Vector2(959.5, 982.5)
-shape = SubResource("RectangleShape2D_smvv8")
-
-[node name="Area2D2" type="Area2D" parent="Blocking regions" groups=["blocking"]]
-script = ExtResource("6_wtvao")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocking regions/Area2D2"]
-position = Vector2(321.5, 507.75)
-shape = SubResource("RectangleShape2D_wtvao")
-
-[node name="Area2D4" type="Area2D" parent="Blocking regions" groups=["blocking"]]
-script = ExtResource("6_wtvao")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Blocking regions/Area2D4"]
-position = Vector2(2066, 507)
-shape = SubResource("RectangleShape2D_5kejm")
-
-[connection signal="mouse_entered" from="Blocking regions/Area2D" to="Blocking regions/Area2D" method="MouseEnter"]
-[connection signal="mouse_exited" from="Blocking regions/Area2D" to="Blocking regions/Area2D" method="MouseExit"]
-[connection signal="mouse_entered" from="Blocking regions/Area2D3" to="Blocking regions/Area2D3" method="MouseEnter"]
-[connection signal="mouse_exited" from="Blocking regions/Area2D3" to="Blocking regions/Area2D3" method="MouseExit"]
-[connection signal="mouse_entered" from="Blocking regions/Area2D2" to="Blocking regions/Area2D2" method="MouseEnter"]
-[connection signal="mouse_exited" from="Blocking regions/Area2D2" to="Blocking regions/Area2D2" method="MouseExit"]
-[connection signal="mouse_entered" from="Blocking regions/Area2D4" to="Blocking regions/Area2D4" method="MouseEnter"]
-[connection signal="mouse_exited" from="Blocking regions/Area2D4" to="Blocking regions/Area2D4" method="MouseExit"]
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [editable path="GridHelper"]

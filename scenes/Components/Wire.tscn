@@ -9,7 +9,7 @@ script = ExtResource("1_ghwwn")
 startCell = NodePath("Pin")
 endCell = NodePath("Pin2")
 line = NodePath("Line2D")
-lineWidth = 10.0
+lineWidth = 25.0
 
 [node name="Pin2" parent="." instance=ExtResource("1_mex8t")]
 position = Vector2(-25, 0)
@@ -18,3 +18,4 @@ position = Vector2(-25, 0)
 position = Vector2(40, 1)
 
 [node name="Line2D" type="Line2D" parent="."]
+width = 45.0

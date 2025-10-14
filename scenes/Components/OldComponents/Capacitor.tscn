@@ -6,7 +6,6 @@
 
 [sub_resource type="Resource" id="Resource_ry4dy"]
 script = ExtResource("2_ry4dy")
-C = 1e-06
 metadata/_custom_type_script = "uid://bc6og24jt8opx"
 
 [node name="Capacitor" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
@@ -15,7 +14,7 @@ pins = [NodePath("Pin"), NodePath("Pin2")]
 componentProperty = SubResource("Resource_ry4dy")
 
 [node name="Pin" parent="." instance=ExtResource("3_jy1wl")]
-position = Vector2(-15, 0)
+position = Vector2(-60, 0)
 
 [node name="Pin2" parent="." instance=ExtResource("3_jy1wl")]
-position = Vector2(15, 0)
+position = Vector2(60, 0)

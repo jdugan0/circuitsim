@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://0rhy2vb2h0dp" path="res://scripts/circuit/Pin.cs" id="1_tfimg"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f73kq"]
-size = Vector2(20, 20)
+size = Vector2(40, 40)
 
 [node name="Pin" type="Node2D" groups=["pin"]]
 script = ExtResource("1_tfimg")

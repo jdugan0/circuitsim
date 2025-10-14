@@ -14,7 +14,7 @@ pins = [NodePath("Pin"), NodePath("Pin2")]
 componentProperty = SubResource("Resource_flfab")
 
 [node name="Pin" parent="." instance=ExtResource("3_i1imm")]
-position = Vector2(-15, 0)
+position = Vector2(-60, 0)
 
 [node name="Pin2" parent="." instance=ExtResource("3_i1imm")]
-position = Vector2(15, 0)
+position = Vector2(60, 0)

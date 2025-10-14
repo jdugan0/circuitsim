@@ -6,7 +6,6 @@
 
 [sub_resource type="Resource" id="Resource_igog0"]
 script = ExtResource("2_igog0")
-L = 0.001
 metadata/_custom_type_script = "uid://c7a45inhl4a6i"
 
 [node name="Inductor" type="Node2D" node_paths=PackedStringArray("pins") groups=["component"]]
@@ -15,7 +14,7 @@ pins = [NodePath("Pin"), NodePath("Pin2")]
 componentProperty = SubResource("Resource_igog0")
 
 [node name="Pin" parent="." instance=ExtResource("3_6gf1u")]
-position = Vector2(-15, 0)
+position = Vector2(-60, 0)
 
 [node name="Pin2" parent="." instance=ExtResource("3_6gf1u")]
-position = Vector2(15, 0)
+position = Vector2(60, 0)
