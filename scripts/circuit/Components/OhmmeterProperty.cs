@@ -17,7 +17,7 @@ public partial class OhmmeterProperty : ComponentProperty
     {
         double voltage = pins[1].solvedVoltage - pins[0].solvedVoltage;
         double r = voltage / testCurrent;
-        if (r > 1e5) r = double.PositiveInfinity;
+        // if (r > 1e5) r = double.PositiveInfinity;
         return (r, testCurrent);
     }
 }
