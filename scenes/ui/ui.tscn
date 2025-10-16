@@ -50,6 +50,7 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 theme_override_constants/separation = 20
 split_offset = 605
+dragging_enabled = false
 
 [node name="LVBox" type="VBoxContainer" parent="BackgroundPanel/FullMargin/HSplitContainer"]
 layout_mode = 2
