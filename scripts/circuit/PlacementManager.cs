@@ -90,7 +90,7 @@ public partial class PlacementManager : Node2D
                 }
             }
         }
-        if (Input.IsActionJustPressed("PLACE") && bounding == 0)
+        if (Input.IsActionJustPressed("PLACE") && bounding > 0)
         {
             foreach (Draggable d in draggables)
             {
