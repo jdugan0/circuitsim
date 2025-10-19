@@ -13,7 +13,7 @@ public partial class PlacementManager : Node2D
     [Signal] public delegate void OnGridChangeEventHandler();
     public static PlacementManager instance;
 
-    Component voltMeterCurrent = null;
+    public Component voltMeterCurrent = null;
     public override void _Ready()
     {
         instance = this;
@@ -23,6 +23,10 @@ public partial class PlacementManager : Node2D
     {
         Node n = scene.Instantiate();
         currentDrag = (Draggable)n.GetChild(1);
+        if (n.GetChild(0) is Component)
+        {
+            currentDrag.comp = (Component)n.GetChild(0);
+        }
         currentDrag.BeginDrag();
         AddChild(n);
     }
@@ -146,7 +150,9 @@ public partial class PlacementManager : Node2D
             if (currentDrag != null || wire != null || wireToDrag != null || closest != null)
             {
                 if ((currentDrag != null && currentDrag.EndDrag()) || currentDrag == null)
+                {
                     EmitSignal(SignalName.OnGridChange);
+                }
             }
             wire = null;
             closest = null;

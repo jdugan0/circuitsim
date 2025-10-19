@@ -7,6 +7,7 @@ public partial class Draggable : Area2D
     [Export] Vector2 offset = new Vector2(15, 0);
     [Export] Vector2 realOffset;
     [Export] public Node2D moveTarget;
+    public Component comp;
     public bool valid;
     public override void _Ready()
     {
@@ -44,11 +45,22 @@ public partial class Draggable : Area2D
     }
     public bool EndDrag()
     {
+        if (comp != null)
+        {
+            foreach (Pin p in comp.pins)
+            {
+                if (!p.valid)
+                {
+                    valid = false;
+                }
+            }
+        }
         if (moveTarget is Component c)
         {
             c.drag = false;
             c.EmitSignal("DragChanged");
         }
+
         if (inArea == null && valid)
         {
             inital = GlobalPosition;
@@ -57,8 +69,14 @@ public partial class Draggable : Area2D
 
         if (inital == null || !valid)
         {
-            GetParent().QueueFree();
+            if (moveTarget is Pin p)
+            {
+                p.disabled = true;
+                PlacementManager.instance.voltMeterCurrent = (Component)p.GetParent();
+                return true;
+            }
             moveTarget.QueueFree();
+            GetParent().QueueFree();
             QueueFree();
             return false;
         }

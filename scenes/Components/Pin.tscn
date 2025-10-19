@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://gd3mvgx8q2te"]
+[gd_scene load_steps=4 format=3 uid="uid://gd3mvgx8q2te"]
 
 [ext_resource type="Script" uid="uid://0rhy2vb2h0dp" path="res://scripts/circuit/Pin.cs" id="1_tfimg"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f73kq"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfimg"]
 size = Vector2(40, 40)
 
 [node name="Pin" type="Node2D" groups=["pin"]]
@@ -10,3 +13,11 @@ script = ExtResource("1_tfimg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_f73kq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tfimg")
+
+[connection signal="area_entered" from="Area2D" to="." method="EnterValid"]
+[connection signal="area_exited" from="Area2D" to="." method="ExitValid"]

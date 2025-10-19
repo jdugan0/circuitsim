@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Dynamic;
 
 public partial class Pin : Node2D
 {
@@ -9,6 +10,7 @@ public partial class Pin : Node2D
     [Export] public bool disabled = false;
     [Export] public Draggable draggable;
     bool bang = false;
+    public bool valid;
     public Vector2I GetGridCoord()
     {
         return GridHelper.GetGridCoord(this);
@@ -22,6 +24,21 @@ public partial class Pin : Node2D
         else
         {
             Visible = true;
+        }
+    }
+
+    public void EnterValid(Area2D area)
+    {
+        if (area.IsInGroup("valid"))
+        {
+            valid = true;
+        }
+    }
+    public void ExitValid(Area2D area)
+    {
+        if (area.IsInGroup("valid"))
+        {
+            valid = false;
         }
     }
 
