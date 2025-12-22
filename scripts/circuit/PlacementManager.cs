@@ -153,6 +153,14 @@ public partial class PlacementManager : Node2D
                 {
                     EmitSignal(SignalName.OnGridChange);
                 }
+                if (wireToDrag != null && wireToDrag.queueDestroy)
+                {
+                    wireToDrag.QueueFree();
+                }
+                if (wire != null && wire.queueDestroy)
+                {
+                    wire.QueueFree();
+                }
             }
             wire = null;
             closest = null;

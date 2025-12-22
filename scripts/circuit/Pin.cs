@@ -11,6 +11,7 @@ public partial class Pin : Node2D
     [Export] public Draggable draggable;
     bool bang = false;
     public bool valid;
+    bool lastValid = false;
     public Vector2I GetGridCoord()
     {
         return GridHelper.GetGridCoord(this);
@@ -25,6 +26,19 @@ public partial class Pin : Node2D
         {
             Visible = true;
         }
+        if (GetParent() is Wire w)
+        {
+            if (!valid && lastValid)
+            {
+                w.queueDestroy = true;
+            }
+            if (valid && !lastValid)
+            {
+                w.queueDestroy = false;
+            }
+        }
+
+        lastValid = valid;
     }
 
     public void EnterValid(Area2D area)

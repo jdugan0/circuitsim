@@ -9,6 +9,7 @@ public partial class Wire : Node2D
     [Export] Line2D line;
     [Export] Color lineColor = new Color(1, 1, 1);
     [Export] float lineWidth = 2;
+    public bool queueDestroy;
 
     public bool GetConnectableAlongY()
     {
